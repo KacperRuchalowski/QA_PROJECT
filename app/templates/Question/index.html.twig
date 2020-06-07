@@ -4,6 +4,7 @@
     {{ 'Question List'|trans }}
 {% endblock %}
 
+
 {% block body %}
     <h1>{{ 'Question List'|trans }}</h1>
     {% if pagination is defined and pagination.items|length %}
@@ -13,8 +14,9 @@
             <thead>
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'ID'|trans, 'question.id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Title'|trans, 'question.title_question') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Content'|trans, 'question.content') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Title'|trans, 'question.TitleQuestion') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Content'|trans, 'question.Content') }}</th>
+                <th>{{ 'Category'|trans }}</th>
                 <th>{{ 'Actions'|trans }}</th>
             </tr>
             </thead>
@@ -22,12 +24,12 @@
             {% for question in pagination.items %}
                 <tr>
                     <td>{{ question.id }}</td>
-                    <td>{{ question.titleQuestion}}</td>
-                    <td>{{ question.content }}</td>
-
+                    <td>{{ question.TitleQuestion }}</td>
+                    <td>{{ question.Content }}</td>
+                    <td>{{ question.category.name }}</td>
                     <td>
-                        <a href="{{ url('question_show', {id: question.id}) }}" title="{{ 'action_view'|trans }}">
-                            {{ 'Examine'|trans }}
+                        <a href="{{ url('question_show', {id: question.id}) }}" title="{{ 'Expand'|trans }}">
+                            {{ 'Expand'|trans }}
                         </a>
                     </td>
                 </tr>
