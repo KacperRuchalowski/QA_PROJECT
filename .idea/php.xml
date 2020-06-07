@@ -117,7 +117,6 @@
       <path value="$PROJECT_DIR$/app/vendor/egulias/email-validator" />
       <path value="$PROJECT_DIR$/app/vendor/sensio/framework-extra-bundle" />
       <path value="$PROJECT_DIR$/app/vendor/nikic/php-parser" />
-      <path value="$PROJECT_DIR$/app/vendor/jdorn/sql-formatter" />
       <path value="$PROJECT_DIR$/app/vendor/twig/twig" />
       <path value="$PROJECT_DIR$/app/vendor/twig/extra-bundle" />
       <path value="$PROJECT_DIR$/app/vendor/psr/log" />
@@ -132,6 +131,10 @@
       <path value="$PROJECT_DIR$/app/vendor/doctrine/data-fixtures" />
       <path value="$PROJECT_DIR$/app/vendor/doctrine/doctrine-fixtures-bundle" />
       <path value="$PROJECT_DIR$/app/vendor/fzaninotto/faker" />
+      <path value="$PROJECT_DIR$/app/vendor/knplabs/knp-paginator-bundle" />
+      <path value="$PROJECT_DIR$/app/vendor/knplabs/knp-components" />
+      <path value="$PROJECT_DIR$/app/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/app/vendor/doctrine/sql-formatter" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.4" />
