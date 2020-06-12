@@ -7,6 +7,13 @@
 
 {% block body %}
     <h1>{{ 'Question List'|trans }}</h1>
+
+
+    <a href="{{ url('category_index') }}" title="{{ 'Go to categories '|trans }}">
+        {{ 'Go to categories '|trans }}
+    </a>
+
+
     {% if pagination is defined and pagination.items|length %}
 
 
