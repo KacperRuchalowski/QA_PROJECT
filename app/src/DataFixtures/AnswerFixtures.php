@@ -1,17 +1,18 @@
 <?php
 /**
- * Question fixtures.
+ * Task fixtures.
  */
 
 namespace App\DataFixtures;
 
 use App\Entity\Answer;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
 /**
  * Class QuestionFixtures.
  */
-class AnswerFixtures extends AbstractBaseFixtures
+class AnswerFixtures extends AbstractBaseFixtures implements DependentFixtureInterface
 {
     /**
      * Load data.
@@ -20,13 +21,26 @@ class AnswerFixtures extends AbstractBaseFixtures
      */
     public function loadData(ObjectManager $manager): void
     {
-        for ($i = 0; $i < 10; ++$i) {
+        $this->createMany(50, 'answers', function ($i) {
             $task = new Answer();
+            $task->setIsBest($this->faker->numberBetween(0,1));
             $task->setContent($this->faker->sentence);
-            $task->setIsBest($this->faker->numberBetween(0 , 1));
-            $this->manager->persist($task);
-        }
+            $task->setQuestion($this->getRandomReference('questions'));
+
+            return $task;
+        });
 
         $manager->flush();
+    }
+
+    /**
+     * This method must return an array of fixtures classes
+     * on which the implementing class depends on.
+     *
+     * @return array Array of dependencies
+     */
+    public function getDependencies(): array
+    {
+        return [QuestionFixture::class];
     }
 }

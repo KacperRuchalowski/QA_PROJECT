@@ -22,9 +22,9 @@ class UsersFixture extends AbstractBaseFixtures
     {
         for ($i = 0; $i < 10; ++$i) {
             $task = new Users();
-            $task->setLogin($this->faker->sentence);
-            $task->setPassword($this->faker->sentence);
-            $task->setRoles($this->faker->sentence);
+            $task->setLogin($this->faker->word);
+            $task->setPassword($this->faker->word);
+            $task->setRoles($this->faker->word);
             $this->manager->persist($task);
         }
 

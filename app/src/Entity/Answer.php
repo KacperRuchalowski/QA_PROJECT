@@ -28,6 +28,12 @@ class Answer
      */
     private $is_best;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Question::class, inversedBy="answers")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $question;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,6 +59,18 @@ class Answer
     public function setIsBest(int $is_best): self
     {
         $this->is_best = $is_best;
+
+        return $this;
+    }
+
+    public function getQuestion(): ?Question
+    {
+        return $this->question;
+    }
+
+    public function setQuestion(?Question $question): self
+    {
+        $this->question = $question;
 
         return $this;
     }

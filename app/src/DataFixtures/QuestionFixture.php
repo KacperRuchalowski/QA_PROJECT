@@ -21,7 +21,7 @@ class QuestionFixture extends AbstractBaseFixtures implements DependentFixtureIn
      */
     public function loadData(ObjectManager $manager): void
     {
-        $this->createMany(50, 'tasks', function ($i) {
+        $this->createMany(50, 'questions', function ($i) {
             $task = new Question();
             $task->setTitleQuestion($this->faker->word);
             $task->setContent($this->faker->sentence);

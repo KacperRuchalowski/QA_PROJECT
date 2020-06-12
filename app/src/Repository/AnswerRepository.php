@@ -14,6 +14,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class AnswerRepository extends ServiceEntityRepository
 {
+    const PAGINATOR_ITEMS_PER_PAGE = 10;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Answer::class);

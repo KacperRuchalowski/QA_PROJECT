@@ -1,12 +1,12 @@
 <?php
 /**
- * Question controller.
+ * Answer controller.
  */
 
 namespace App\Controller;
 
-use App\Entity\Question;
-use App\Repository\QuestionRepository;
+use App\Entity\Answer;
+use App\Repository\AnswerRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,44 +14,44 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class QuestionController.
+ * Class AnswerController.
  *
- * @Route("/question")
+ * @Route("/answer")
  */
-class QuestionController extends AbstractController
+class AnswerController extends AbstractController
 {
     /**
      * Index action.
      * @param \Symfony\Component\HttpFoundation\Request $request        HTTP request
-     * @param \App\Repository\QuestionRepository $questionRepository QuestionRepository
+     * @param \App\Repository\AnswerRepository $answerRepository AnswerRepository
      * @param \Knp\Component\Pager\PaginatorInterface   $paginator      Paginator
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
      * @Route(
      *     "/",
      *     methods={"GET"},
-     *     name="question_index",
+     *     name="answer_index",
      *
      * )
      */
-    public function index(Request $request, QuestionRepository $questionRepository, PaginatorInterface $paginator): Response
+    public function index(Request $request, AnswerRepository $answerRepository, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
-            $questionRepository->queryAll(),
+            $answerRepository->findAll(),
             $request->query->getInt('page', 1),
-            QuestionRepository::PAGINATOR_ITEMS_PER_PAGE
+            AnswerRepository::PAGINATOR_ITEMS_PER_PAGE
         );
 
 
 
         return $this->render(
-            'question/index.html.twig',
+            'Answer/index.html.twig',
             ['pagination' => $pagination]
         );
     }
 
     /**
-     * @param QuestionRepository $questionRepository
+     * @param AnswerRepository $answerRepository
      * @param int $id
      * @return Response
      *
@@ -59,18 +59,18 @@ class QuestionController extends AbstractController
      *
      *     "/{id}",
      *     methods={"GET"},
-     *     name="question_show",
+     *     name="answer_show",
      *     requirements={"id": "[1-9]\d*"},
      * )
      **/
 
 
-
-    public function show(Question $question): Response
+    public function show(Answer $answer): Response
     {
         return $this->render(
-            'Question/show.html.twig',
-            ['question' => $question]
+            'Answer/show.html.twig',
+            ['answer' => $answer]
         );
     }
 }
+

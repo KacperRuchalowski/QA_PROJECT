@@ -17,9 +17,38 @@
             <dt>{{ 'Category'|trans }}</dt>
             <dd>{{  question.category.name }}</dd>
         </dl>
+
+        {% if question is defined and question|length %}
+            <div >
+                {% for answers in question.answers %}
+                    <div>
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{ answers.question.titleQuestion }}</h5>
+                            <h5 class="card-title">{{ answers.content }}</h5>
+
+                        </div>
+                    </div>
+
+                {% endfor %}
+            </div>
+
+        {% else %}
+            <p>
+                {{ 'message_empty_list'|trans }}
+            </p>
+
+        {% endif %}
+
         <p>
             <a href="{{ url('question_index') }}" title="{{ 'Back'|trans }}">
                 {{ 'Back'|trans }}
+            </a>
+        </p>
+
+        <p>
+            <a href="{{ url('answer_index') }}" title="{{ 'Show answers'|trans }}">
+                {{ 'show answers'|trans }}
             </a>
         </p>
     {% else %}
