@@ -1,59 +1,40 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'Category Details'|trans({'%id%': question.id|default('')}) }}
+    {{ 'Question Details'|trans({'%id%': category.id|default('')}) }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'Category Details'|trans({'%id%': question.id|default('')}) }}</h1>
-    {% if question is defined and question|length %}
-        <dl class="dl-horizontal">
-            <dt>{{ 'ID'|trans }}</dt>
-            <dd>{{ question.id }}</dd>
-            <dt>{{ 'Title'|trans }}</dt>
-            <dd>{{ question.TitleQuestion|trans }}</dd>
-            <dt>{{ 'Content'|trans }}</dt>
-            <dd>{{ question.Content }}</dd>
-            <dt>{{ 'Category'|trans }}</dt>
-            <dd>{{  question.category.name }}</dd>
-        </dl>
+<h1>{{ 'Question Details'|trans({'%id%': category.id|default('')}) }}</h1>
+{% if category is defined and category|length %}
 
-        {% if question is defined and question|length %}
-            <div >
-                {% for answers in question.answers %}
-                    <div>
+<dl class="dl-horizontal">
+    <dt>{{ 'ID'|trans }}</dt>
+    <dd>{{ category.id }}</dd>
+    <dt>{{ 'Title'|trans }}</dt>
+    <dd>{{ category.name|trans }}</dd>
+    <dt>{{ 'Question'|trans }}</dt>
+    {% for question in category.questions %}
 
-                        <div class="card-body">
-                            <h5 class="card-title">{{ answers.question.titleQuestion }}</h5>
-                            <h5 class="card-title">{{ answers.content }}</h5>
+    <dd> {{ question.titleQuestion }}</dd>
+        <a href="{{ url('question_show', {id: question.id}) }}" title="{{ 'Show '|trans }}">
+            {{ 'Show '|trans }}
+        </a>
 
-                        </div>
-                    </div>
+    {% endfor %}
+</dl>
 
-                {% endfor %}
-            </div>
+{% endif %}
 
-        {% else %}
-            <p>
-                {{ 'message_empty_list'|trans }}
-            </p>
+    <p>
+        <a href="{{ url('category_index') }}" title="{{ 'Back'|trans }}">
+            {{ 'Back'|trans }}
+        </a>
+    </p>
 
-        {% endif %}
-
-        <p>
-            <a href="{{ url('question_index') }}" title="{{ 'Back'|trans }}">
-                {{ 'Back'|trans }}
-            </a>
-        </p>
-
-        <p>
-            <a href="{{ url('answer_index') }}" title="{{ 'Show answers'|trans }}">
-                {{ 'show answers'|trans }}
-            </a>
-        </p>
-    {% else %}
-        <p>
-            {{ 'message_item_not_found'|trans }}
-        </p>
-    {% endif %}
 {% endblock %}
+
+
+
+
+
