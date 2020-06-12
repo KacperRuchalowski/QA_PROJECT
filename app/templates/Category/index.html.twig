@@ -7,6 +7,11 @@
 
 {% block body %}
     <h1>{{ 'Category List'|trans }}</h1>
+
+    <a href="{{ url('category_create') }}" title="{{ 'Create '|trans }}">
+        {{ 'Create '|trans }}
+    </a>
+
     {% if pagination is defined and pagination.items|length %}
 
 
@@ -27,7 +32,16 @@
                         <a href="{{ url('category_show', {id: category.id}) }}" title="{{ 'Show '|trans }}">
                             {{ 'Show '|trans }}
                         </a>
+
+                        <a href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'Edit '|trans }}">
+                            {{ 'Edit '|trans }}
+                        </a>
+
+                        <a href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'Delete '|trans }}">
+                            {{ 'Delete '|trans }}
+                        </a>
                     </td>
+
                 </tr>
             {% endfor %}
             </tbody>
@@ -42,4 +56,7 @@
             {{ 'message_empty_list'|trans }}
         </p>
     {% endif %}
+
+
+
 {% endblock %}
