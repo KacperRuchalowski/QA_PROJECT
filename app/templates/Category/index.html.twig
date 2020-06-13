@@ -6,11 +6,17 @@
 
 
 {% block body %}
-    <h1>{{ 'Category List'|trans }}</h1>
 
     <a href="{{ url('category_create') }}" title="{{ 'Create '|trans }}">
         {{ 'Create '|trans }}
     </a>
+
+    <a href="{{ url('question_index') }}" title="{{ 'Go to Questions '|trans }}">
+        {{ 'Go to Questions '|trans }}
+    </a>
+
+
+    <h1>{{ 'Category List'|trans }}</h1>
 
     {% if pagination is defined and pagination.items|length %}
 

@@ -13,6 +13,10 @@
         {{ 'Go to categories '|trans }}
     </a>
 
+    <a href="{{ url('question_create') }}" title="{{ 'Create a question '|trans }}">
+        {{ 'Create a question '|trans }}
+    </a>
+
 
     {% if pagination is defined and pagination.items|length %}
 

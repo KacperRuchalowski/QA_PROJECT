@@ -64,4 +64,18 @@ class QuestionRepository extends ServiceEntityRepository
     {
         return $queryBuilder ?? $this->createQueryBuilder('question');
     }
+
+    /**
+     * Save record.
+     *
+     * @param \App\Entity\Question $question Question entity
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function save(Question $question): void
+    {
+        $this->_em->persist($question);
+        $this->_em->flush($question);
+    }
 }

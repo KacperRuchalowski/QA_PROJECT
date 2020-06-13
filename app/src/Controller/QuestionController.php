@@ -6,6 +6,7 @@
 namespace App\Controller;
 
 use App\Entity\Question;
+use App\Form\QuestionType;
 use App\Repository\QuestionRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Knp\Component\Pager\PaginatorInterface;
@@ -71,6 +72,41 @@ class QuestionController extends AbstractController
         return $this->render(
             'Question/show.html.twig',
             ['question' => $question]
+        );
+    }
+
+    /**
+     * Create action.
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request            HTTP request
+     * @param \App\Repository\CategoryRepository        $questionRepository Question repository
+     *
+     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     *
+     * @Route(
+     *     "/create",
+     *     methods={"GET", "POST"},
+     *     name="question_create",
+     * )
+     */
+    public function create(Request $request, QuestionRepository $questionRepository): Response
+    {
+        $question = new Question();
+        $form = $this->createForm(QuestionType::class, $question);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $questionRepository->save($question);
+
+            return $this->redirectToRoute('question_index');
+        }
+
+        return $this->render(
+            'question/create.html.twig',
+            ['form' => $form->createView()]
         );
     }
 }
