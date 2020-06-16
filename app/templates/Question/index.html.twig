@@ -42,6 +42,15 @@
                         <a href="{{ url('question_show', {id: question.id}) }}" title="{{ 'Show '|trans }}">
                             {{ 'Show '|trans }}
                         </a>
+
+                        <a href="{{ url('question_edit', {id: question.id}) }}" title="{{ 'Edit '|trans }}">
+                            {{ 'Edit '|trans }}
+                        </a>
+
+                        <a href="{{ url('question_delete', {id: question.id}) }}" title="{{ 'Delete '|trans }}">
+                            {{ 'Delete '|trans }}
+                        </a>
+
                     </td>
                 </tr>
             {% endfor %}

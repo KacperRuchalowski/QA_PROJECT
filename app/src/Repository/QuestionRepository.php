@@ -78,4 +78,20 @@ class QuestionRepository extends ServiceEntityRepository
         $this->_em->persist($question);
         $this->_em->flush($question);
     }
+
+    // ...
+    /**
+     * Delete record.
+     *
+     * @param \App\Entity\Question $question Question entity
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function delete(Question $question): void
+    {
+        $this->_em->remove($question);
+        $this->_em->flush($question);
+    }
+
 }
