@@ -49,4 +49,34 @@ class AnswerRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    // ...
+    /**
+     * Save record.
+     *
+     * @param \App\Entity\Answer $answer Answer entity
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function save(Answer $answer): void
+    {
+        $this->_em->persist($answer);
+        $this->_em->flush($answer);
+    }
+
+
+    /**
+     * Delete record.
+     *
+     * @param \App\Entity\Answer $answer Answer entity
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function delete(Answer $answer): void
+    {
+        $this->_em->remove($answer);
+        $this->_em->flush($answer);
+    }
 }

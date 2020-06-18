@@ -24,8 +24,16 @@
                     <div>
 
                         <div class="card-body">
-                            <h5 class="card-title">{{ answers.question.titleQuestion }}</h5>
+
                             <h5 class="card-title">{{ answers.content }}</h5>
+                            <a href="{{ url('answer_edit', {id: answers.id}) }}" title="{{ 'Edit '|trans }}">
+                                {{ 'Edit '|trans }}
+                            </a>
+
+                            <a href="{{ url('answer_delete', {id: answers.id}) }}" title="{{ 'Delete '|trans }}">
+                                {{ 'Delete '|trans }}
+                            </a>
+
 
                         </div>
                     </div>
@@ -41,9 +49,15 @@
         {% endif %}
 
         <p>
+            <a href="{{ url('answer_create', {id: question.id}) }}" title="{{ 'Add answer '|trans }}">
+                {{ 'Add answer '|trans }}
+            </a>
+
             <a href="{{ url('question_index') }}" title="{{ 'Back'|trans }}">
                 {{ 'Back'|trans }}
             </a>
+
+
         </p>
 
     {% else %}

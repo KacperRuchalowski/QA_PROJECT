@@ -6,7 +6,9 @@
 namespace App\Controller;
 
 use App\Entity\Answer;
+use App\Form\AnswerType;
 use App\Repository\AnswerRepository;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,9 +24,9 @@ class AnswerController extends AbstractController
 {
     /**
      * Index action.
-     * @param \Symfony\Component\HttpFoundation\Request $request        HTTP request
+     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
      * @param \App\Repository\AnswerRepository $answerRepository AnswerRepository
-     * @param \Knp\Component\Pager\PaginatorInterface   $paginator      Paginator
+     * @param \Knp\Component\Pager\PaginatorInterface $paginator Paginator
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
      * @Route(
@@ -41,7 +43,6 @@ class AnswerController extends AbstractController
             $request->query->getInt('page', 1),
             AnswerRepository::PAGINATOR_ITEMS_PER_PAGE
         );
-
 
 
         return $this->render(
@@ -72,5 +73,150 @@ class AnswerController extends AbstractController
             ['answer' => $answer]
         );
     }
+
+
+    /**
+     * Create action.
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
+     * @param \App\Repository\AnswerRepository $answerRepository Answer repository
+     *
+     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     *
+     * @Route(
+     *     "/create",
+     *     methods={"GET", "POST"},
+     *     name="answer_create",
+     * )
+     */
+    public function create(Request $request, AnswerRepository $answerRepository): Response
+    {
+        $answer = new Answer();
+        $form = $this->createForm(AnswerType::class, $answer);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $answerRepository->save($answer);
+
+            return $this->redirectToRoute('answer_index');
+        }
+
+        return $this->render(
+            'answer/create.html.twig',
+            ['form' => $form->createView()]
+        );
+    }
+
+    /**
+     * Edit action.
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
+     * @param \App\Entity\Answer $answer Answer entity
+     * @param \App\Repository\AnswerRepository $answerRepository Answer repository
+     *
+     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     *
+     * @Route(
+     *     "/{id}/edit",
+     *     methods={"GET", "PUT"},
+     *     requirements={"id": "[1-9]\d*"},
+     *     name="answer_edit",
+     * )
+     */
+
+    /**
+     * Edit action.
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
+     * @param \App\Entity\Answer $answer Answer entity
+     * @param \App\Repository\AnswerRepository $categoryRepository Category repository
+     *
+     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     *
+     * @Route(
+     *     "/{id}/edit",
+     *     methods={"GET", "PUT"},
+     *     requirements={"id": "[1-9]\d*"},
+     *     name="answer_edit",
+     * )
+     */
+    public function edit(Request $request, Answer $answer, AnswerRepository $answerRepository): Response
+    {
+        $form = $this->createForm(AnswerType::class, $answer, ['method' => 'PUT']);
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $answerRepository->save($answer);
+
+            $this->addFlash('success', 'message_updated_successfully');
+
+            return $this->redirectToRoute('answer_index');
+        }
+
+        return $this->render(
+            'answer/edit.html.twig',
+            [
+                'form' => $form->createView(),
+                'answer' => $answer,
+            ]
+        );
+    }
+
+    /**
+     * Delete action.
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
+     * @param \App\Entity\Answer $answer Answer entity
+     * @param \App\Repository\AnswerRepository $answerRepository Answer repository
+     *
+     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     *
+     * @Route(
+     *     "/{id}/delete",
+     *     methods={"GET", "DELETE"},
+     *     requirements={"id": "[1-9]\d*"},
+     *     name="answer_delete",
+     * )
+     */
+    public function delete(Request $request, Answer $answer, AnswerRepository $answerRepository): Response
+    {
+        $form = $this->createForm(FormType::class, $answer, ['method' => 'DELETE']);
+        $form->handleRequest($request);
+
+        if ($request->isMethod('DELETE') && !$form->isSubmitted()) {
+            $form->submit($request->request->get($form->getName()));
+        }
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $answerRepository->delete($answer);
+            $this->addFlash('success', 'message.deleted_successfully');
+
+            return $this->redirectToRoute('category_index');
+        }
+
+        return $this->render(
+            'answer/delete.html.twig',
+            [
+                'form' => $form->createView(),
+                'answer' => $answer,
+            ]
+        );
+    }
+
+
+
 }
 
