@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'User List'|trans }}
+{% endblock %}
+
+
+{% block body %}
+
+
+
+    <h1>{{ 'User List'|trans }}</h1>
+
+    <a href="{{ url('user_create') }}" title="{{ 'Create '|trans }}">
+        {{ 'Create '|trans }}
+    </a>
+
+    {% if pagination is defined and pagination.items|length %}
+
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ 'Email'|trans }}</th>
+                <th>{{ 'Password'|trans }}</th>
+                <th>{{ 'Actions'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in pagination.items %}
+                <tr>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.password }}</td>
+                    <td>
+                            <a href="{{ url('user_edit', {id: user.id}) }}" title="{{ 'Edit '|trans }}">
+                                {{ 'Edit '|trans }}
+                            </a>
+
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+    {% else %}
+        <p>
+            {{ 'message_empty_list'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}

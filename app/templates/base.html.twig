@@ -18,6 +18,9 @@
         <div class="navbar-nav">
             <a class="nav-item nav-link" href="{{ url('question_index') }}">Questions</a>
             <a class="nav-item nav-link" href="{{ url('category_index') }}">Categories</a>
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <a class="nav-item nav-link" href="{{ url('user_index') }}">Users</a>
+            {% endif %}
         </div>
     </div>
 </nav>
@@ -26,9 +29,7 @@
     <div>{{ app.user.email }}</div>
     <div>
         <a href="{{ url('app_logout') }}">{{ 'action_logout'|trans }}</a>
-        <a href="{{ url('user_edit') }}" title="{{ 'Edit '|trans }}">
-            {{ 'Edit '|trans }}
-        </a>
+
 
     </div>
 {% else %}
