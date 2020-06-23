@@ -25,6 +25,8 @@ class AnswerFixtures extends AbstractBaseFixtures implements DependentFixtureInt
             $task = new Answer();
             $task->setIsBest($this->faker->numberBetween(0,1));
             $task->setContent($this->faker->sentence);
+            $task->setEmail($this->faker->email);
+            $task->setNick($this->faker->colorName);
             $task->setQuestion($this->getRandomReference('questions'));
 
             return $task;

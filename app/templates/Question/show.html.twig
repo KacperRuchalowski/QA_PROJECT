@@ -24,6 +24,10 @@
 
                         <div class="card-body">
                             <h5 class="card-title">{{ answers.content }}</h5>
+                            <p class="card-title"> {{ answers.nick }}
+                                {{ answers.email }}
+                            </p>
+                            <h1 class="card-title"></h1>
 
                             {% if is_granted ('ROLE_ADMIN') %}
 

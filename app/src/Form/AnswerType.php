@@ -46,6 +46,26 @@ class AnswerType extends AbstractType
             ]
         );
 
+        $builder->add(
+            'Nick',
+            TextType::class,
+            [
+                'label' => 'label_nick',
+                'required' => true,
+                'attr' => ['max_length' => 255],
+            ]
+        );
+
+        $builder->add(
+            'Email',
+            TextType::class,
+            [
+                'label' => 'label_email',
+                'required' => true,
+                'attr' => ['max_length' => 255],
+            ]
+        );
+
 
 
         $builder->add('is_best', HiddenType::class, [

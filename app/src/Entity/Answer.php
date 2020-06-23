@@ -34,6 +34,16 @@ class Answer
      */
     private $question;
 
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $email;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $nick;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -71,6 +81,30 @@ class Answer
     public function setQuestion(?Question $question): self
     {
         $this->question = $question;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getNick(): ?string
+    {
+        return $this->nick;
+    }
+
+    public function setNick(string $nick): self
+    {
+        $this->nick = $nick;
 
         return $this;
     }
