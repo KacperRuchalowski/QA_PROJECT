@@ -8,8 +8,6 @@
     <h1>{{ 'Question Details'|trans({'%id%': question.id|default('')}) }}</h1>
     {% if question is defined and question|length %}
         <dl class="dl-horizontal">
-            <dt>{{ 'ID'|trans }}</dt>
-            <dd>{{ question.id }}</dd>
             <dt>{{ 'Title'|trans }}</dt>
             <dd>{{ question.TitleQuestion|trans }}</dd>
             <dt>{{ 'Content'|trans }}</dt>
@@ -23,9 +21,13 @@
                 {% for answers in question.answers %}
                     <div>
 
-                        <div class="card-body">
 
+                        <div class="card-body">
                             <h5 class="card-title">{{ answers.content }}</h5>
+
+                            {% if is_granted ('ROLE_ADMIN') %}
+
+
                             <a href="{{ url('answer_edit', {id: answers.id}) }}" title="{{ 'Edit '|trans }}">
                                 {{ 'Edit '|trans }}
                             </a>
@@ -36,6 +38,7 @@
 
 
                         </div>
+                        {% endif %}
                     </div>
 
                 {% endfor %}
@@ -49,9 +52,18 @@
         {% endif %}
 
         <p>
-            <a href="{{ url('answer_create', {id: question.id}) }}" title="{{ 'Add answer '|trans }}">
-                {{ 'Add answer '|trans }}
-            </a>
+            <div>
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+
+                <div  class="form-group row float-sm-right">
+                    <input type="submit" value="{{ 'save'|trans }}" class="btn btn-light">
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+
+
 
             <a href="{{ url('question_index') }}" title="{{ 'Back'|trans }}">
                 {{ 'Back'|trans }}

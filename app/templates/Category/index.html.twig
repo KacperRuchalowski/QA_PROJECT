@@ -7,14 +7,6 @@
 
 {% block body %}
 
-    <a href="{{ url('category_create') }}" title="{{ 'Create '|trans }}">
-        {{ 'Create '|trans }}
-    </a>
-
-    <a href="{{ url('question_index') }}" title="{{ 'Go to Questions '|trans }}">
-        {{ 'Go to Questions '|trans }}
-    </a>
-
 
     <h1>{{ 'Category List'|trans }}</h1>
 
@@ -24,7 +16,6 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'ID'|trans, 'category.id') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Title'|trans, 'category.name') }}</th>
                 <th>{{ 'Actions'|trans }}</th>
             </tr>
@@ -32,13 +23,12 @@
             <tbody>
             {% for category in pagination.items %}
                 <tr>
-                    <td>{{ category.id }}</td>
                     <td>{{ category.name }}</td>
                     <td>
                         <a href="{{ url('category_show', {id: category.id}) }}" title="{{ 'Show '|trans }}">
                             {{ 'Show '|trans }}
                         </a>
-
+                        {% if is_granted ('ROLE_ADMIN') %}
                         <a href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'Edit '|trans }}">
                             {{ 'Edit '|trans }}
                         </a>
@@ -46,6 +36,7 @@
                         <a href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'Delete '|trans }}">
                             {{ 'Delete '|trans }}
                         </a>
+                        {% endif %}
                     </td>
 
                 </tr>

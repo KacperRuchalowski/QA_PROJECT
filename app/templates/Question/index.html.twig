@@ -6,16 +6,11 @@
 
 
 {% block body %}
+
+
+
     <h1>{{ 'Question List'|trans }}</h1>
 
-
-    <a href="{{ url('category_index') }}" title="{{ 'Go to categories '|trans }}">
-        {{ 'Go to categories '|trans }}
-    </a>
-
-    <a href="{{ url('question_create') }}" title="{{ 'Create a question '|trans }}">
-        {{ 'Create a question '|trans }}
-    </a>
 
 
     {% if pagination is defined and pagination.items|length %}
@@ -24,7 +19,6 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'ID'|trans, 'question.id') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Title'|trans, 'question.TitleQuestion') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Content'|trans, 'question.Content') }}</th>
                 <th>{{ 'Category'|trans }}</th>
@@ -34,7 +28,6 @@
             <tbody>
             {% for question in pagination.items %}
                 <tr>
-                    <td>{{ question.id }}</td>
                     <td>{{ question.TitleQuestion }}</td>
                     <td>{{ question.Content }}</td>
                     <td>{{ question.category.name }}</td>
@@ -42,7 +35,7 @@
                         <a href="{{ url('question_show', {id: question.id}) }}" title="{{ 'Show '|trans }}">
                             {{ 'Show '|trans }}
                         </a>
-
+                        {% if is_granted ('ROLE_ADMIN') %}
                         <a href="{{ url('question_edit', {id: question.id}) }}" title="{{ 'Edit '|trans }}">
                             {{ 'Edit '|trans }}
                         </a>
@@ -50,7 +43,7 @@
                         <a href="{{ url('question_delete', {id: question.id}) }}" title="{{ 'Delete '|trans }}">
                             {{ 'Delete '|trans }}
                         </a>
-
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

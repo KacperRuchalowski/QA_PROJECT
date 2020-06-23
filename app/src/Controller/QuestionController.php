@@ -5,8 +5,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Answer;
 use App\Entity\Question;
+use App\Form\AnswerType;
 use App\Form\QuestionType;
+use App\Repository\AnswerRepository;
 use App\Repository\QuestionRepository;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -60,7 +63,7 @@ class QuestionController extends AbstractController
      * @Route(
      *
      *     "/{id}",
-     *     methods={"GET"},
+     *     methods={"POST", "GET"},
      *     name="question_show",
      *     requirements={"id": "[1-9]\d*"},
      * )
@@ -68,11 +71,25 @@ class QuestionController extends AbstractController
 
 
 
-    public function show(Question $question): Response
+    public function show(Request $request, Question $question, AnswerRepository $answerRepository): Response
     {
+        $answer = new Answer();
+        $form = $this->createForm(AnswerType::class, $answer);
+        $form->handleRequest($request);
+        $id=$question->getId();
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $answer->setQuestion($question);
+            $answerRepository->save($answer);
+
+
+            return $this->redirectToRoute('question_show', ['id'=> $id]);
+        }
+
+
         return $this->render(
-            'Question/show.html.twig',
-            ['question' => $question]
+            'question/show.html.twig',
+            ['question' => $question, 'form' => $form->createView()]
         );
     }
 
@@ -198,6 +215,8 @@ class QuestionController extends AbstractController
             ]
         );
     }
+
+
 
 
 }

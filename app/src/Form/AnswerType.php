@@ -48,23 +48,6 @@ class AnswerType extends AbstractType
 
 
 
-
-        $builder->add(
-            'question',
-            EntityType::class,
-            [
-                'class' => Question::class,
-                'choice_label' => function ($question) {
-                    return $question->gettitleQuestion();
-                },
-                'label' => 'label_category',
-                'placeholder' => 'label_none',
-                'required' => true,
-
-            ]
-        );
-
-
         $builder->add('is_best', HiddenType::class, [
             'data' => '0',
             ]);
