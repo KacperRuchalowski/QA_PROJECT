@@ -6,6 +6,7 @@
 namespace App\Controller;
 
 use App\Entity\Answer;
+use App\Form\AnswerBestType;
 use App\Form\AnswerType;
 use App\Repository\AnswerRepository;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -135,7 +136,7 @@ class AnswerController extends AbstractController
      *
      * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
      * @param \App\Entity\Answer $answer Answer entity
-     * @param \App\Repository\AnswerRepository $categoryRepository Category repository
+     * @param \App\Repository\AnswerRepository $answerRepository Answer repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -204,11 +205,54 @@ class AnswerController extends AbstractController
             $answerRepository->delete($answer);
             $this->addFlash('success', 'message.deleted_successfully');
 
-            return $this->redirectToRoute('category_index');
+            return $this->redirectToRoute('question_index');
         }
 
         return $this->render(
             'answer/delete.html.twig',
+            [
+                'form' => $form->createView(),
+                'answer' => $answer,
+            ]
+        );
+    }
+
+    /**
+     * Best action.
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
+     * @param \App\Entity\Answer $answer Answer entity
+     * @param \App\Repository\AnswerRepository $answerRepository Answer repository
+     *
+     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     *
+     * @Route(
+     *     "/{id}/best",
+     *     methods={"GET", "PUT"},
+     *     requirements={"id": "[1-9]\d*"},
+     *     name="answer_best",
+     * )
+     */
+
+    public function best (Request $request, Answer $answer, AnswerRepository $answerRepository): Response
+    {
+        $form = $this->createForm(AnswerBestType::class, $answer, ['method' => 'PUT']);
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $answerRepository->save($answer);
+
+            $this->addFlash('success', 'message_updated_successfully');
+
+            return $this->redirectToRoute('question_index');
+        }
+
+        return $this->render(
+            'answer/best.html.twig',
             [
                 'form' => $form->createView(),
                 'answer' => $answer,

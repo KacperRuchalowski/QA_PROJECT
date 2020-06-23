@@ -16,10 +16,25 @@
             <dd>{{  question.category.name }}</dd>
         </dl>
 
+        {% for answers in question.answers %}
+
+        {% if answers.isBest == 1 %}
+
+            {{ answers.content }}
+
+            {% endif %}
+        {% endfor %}
+
+
+
         {% if question is defined and question|length %}
             <div >
                 {% for answers in question.answers %}
                     <div>
+
+
+
+
 
 
                         <div class="card-body">
@@ -38,6 +53,10 @@
 
                             <a href="{{ url('answer_delete', {id: answers.id}) }}" title="{{ 'Delete '|trans }}">
                                 {{ 'Delete '|trans }}
+                            </a>
+
+                            <a href="{{ url('answer_best', {id: answers.id}) }}" title="{{ 'Is Best '|trans }}">
+                                {{ 'Is Best '|trans }}
                             </a>
 
 

@@ -25,11 +25,11 @@ class UserController extends AbstractController
     /**
      * Index action.
      *
-     * @param Request                                 $request        HTTP request
-     * @param \App\Repository\QuestionRepository      $userRepository UserRepository
-     * @param \Knp\Component\Pager\PaginatorInterface $paginator      Paginator
+     * @param Request            $request        HTTP request
+     * @param UserRepository     $userRepository UserRepository
+     * @param PaginatorInterface $paginator      Paginator
      *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     * @return Response HTTP response
      *
      * @Route(
      *     "/",
@@ -76,9 +76,9 @@ class UserController extends AbstractController
      * Create action.
      *
      * @param Request                            $request        HTTP request
-     * @param \App\Repository\CategoryRepository $userRepository User repository
+     * @param \App\Repository\UserRepository $userRepository User repository
      *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     * @return Response HTTP response
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
@@ -110,12 +110,12 @@ class UserController extends AbstractController
     /**
      * Edit action.
      *
-     * @param Request                        $request        HTTP request
-     * @param \App\Entity\User               $user           User entity
-     * @param \App\Repository\UserRepository $userRepository User repository
-     * @param UserPasswordEncoderInterface $passwordEncoder PasswordEncoder
+     * @param Request                        $request         HTTP request
+     * @param \App\Entity\User               $user            User entity
+     * @param \App\Repository\UserRepository $userRepository  User repository
+     * @param UserPasswordEncoderInterface   $passwordEncoder PasswordEncoder
      *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     * @return Response HTTP response
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
@@ -148,5 +148,4 @@ class UserController extends AbstractController
             ]
         );
     }
-
 }

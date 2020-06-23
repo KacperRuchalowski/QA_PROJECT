@@ -1,22 +1,21 @@
 <?php
+
 /**
- * Answer type.
+ * AnswerBest type.
  */
 
 namespace App\Form;
 
 use App\Entity\Answer;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class AnswerType.
  */
-class AnswerType extends AbstractType
+class AnswerBestType extends AbstractType
 {
     /**
      * Builds the form.
@@ -24,47 +23,22 @@ class AnswerType extends AbstractType
      * This method is called for each type in the hierarchy starting from the
      * top most type. Type extensions can further modify the form.
      *
+     * @param \Symfony\Component\Form\FormBuilderInterface $builder The form builder
+     * @param array $options The options
      * @see FormTypeExtensionInterface::buildForm()
      *
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder The form builder
-     * @param array                                        $options The options
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add(
-            'Content',
-            TextType::class,
-            [
-                'label' => 'label_title',
-                'required' => true,
-                'attr' => ['max_length' => 255],
-            ]
-        );
 
-        $builder->add(
-            'Nick',
-            TextType::class,
-            [
-                'label' => 'label_nick',
-                'required' => true,
-                'attr' => ['max_length' => 255],
-            ]
-        );
 
-        $builder->add(
-            'Email',
-            EmailType::class,
-            [
-                'label' => 'label_email',
-                'required' => true,
-                'attr' => ['max_length' => 255],
-            ]
-        );
-
-        $builder->add('is_best', HiddenType::class, [
-            'data' => '0',
+        $builder->add('is_best', ChoiceType::class, [
+            'label' => 'label_isBest',
+            'choices' => [
+                'Yes' => true,
+                'No' => false,
+            ],
         ]);
-
     }
 
     /**
@@ -87,6 +61,6 @@ class AnswerType extends AbstractType
      */
     public function getBlockPrefix(): string
     {
-        return 'answer';
+        return 'answerBest';
     }
 }
