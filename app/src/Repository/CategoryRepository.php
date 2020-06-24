@@ -51,6 +51,7 @@ class CategoryRepository extends ServiceEntityRepository
     */
 
     // ...
+
     /**
      * Save record.
      *
@@ -78,5 +79,4 @@ class CategoryRepository extends ServiceEntityRepository
         $this->_em->remove($category);
         $this->_em->flush($category);
     }
-
 }

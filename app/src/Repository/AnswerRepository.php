@@ -51,6 +51,7 @@ class AnswerRepository extends ServiceEntityRepository
     */
 
     // ...
+
     /**
      * Save record.
      *
@@ -64,7 +65,6 @@ class AnswerRepository extends ServiceEntityRepository
         $this->_em->persist($answer);
         $this->_em->flush($answer);
     }
-
 
     /**
      * Delete record.

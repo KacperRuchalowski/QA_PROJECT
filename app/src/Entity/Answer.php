@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\Repository\AnswerRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

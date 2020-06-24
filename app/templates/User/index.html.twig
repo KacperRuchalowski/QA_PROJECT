@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'User List'|trans }}
+    {{ 'title_user_list'|trans }}
 {% endblock %}
 
 
@@ -9,7 +9,7 @@
 
 
 
-    <h1>{{ 'User List'|trans }}</h1>
+    <h1>{{ 'title_user_list'|trans }}</h1>
 
 
     {% if pagination is defined and pagination.items|length %}
@@ -18,7 +18,7 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ 'Email'|trans }}</th>
+                <th>{{ 'label_user_email'|trans }}</th>
                 <th>{{ 'Actions'|trans }}</th>
             </tr>
             </thead>
@@ -27,8 +27,8 @@
                 <tr>
                     <td>{{ user.email }}</td>
                     <td>
-                            <a href="{{ url('user_edit', {id: user.id}) }}" title="{{ 'Edit '|trans }}">
-                                {{ 'Edit '|trans }}
+                            <a href="{{ url('user_edit', {id: user.id}) }}" title="{{ 'label_user_edit'|trans }}">
+                                {{ 'label_user_edit'|trans }}
                             </a>
 
                     </td>

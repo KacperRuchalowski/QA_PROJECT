@@ -5,7 +5,6 @@
 
 namespace App\Form;
 
-
 use App\Entity\Category;
 use App\Entity\Question;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -90,4 +89,3 @@ class QuestionType extends AbstractType
         return 'question';
     }
 }
-

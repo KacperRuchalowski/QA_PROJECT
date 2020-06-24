@@ -23,7 +23,7 @@ class AnswerFixtures extends AbstractBaseFixtures implements DependentFixtureInt
     {
         $this->createMany(50, 'answers', function ($i) {
             $task = new Answer();
-            $task->setIsBest($this->faker->numberBetween(0,1));
+            $task->setIsBest($this->faker->numberBetween(0, 1));
             $task->setContent($this->faker->sentence);
             $task->setEmail($this->faker->email);
             $task->setNick($this->faker->colorName);

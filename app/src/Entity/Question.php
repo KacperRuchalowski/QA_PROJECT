@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\Repository\QuestionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -51,9 +50,6 @@ class Question
         $this->answers = new ArrayCollection();
     }
 
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
@@ -64,23 +60,19 @@ class Question
         return $this->title_question;
     }
 
-
     public function setTitleQuestion(string $title_question): void
     {
         $this->title_question = $title_question;
     }
-
 
     public function getContent(): ?string
     {
         return $this->content;
     }
 
-
     public function setContent(string $content): void
     {
         $this->content = $content;
-
     }
 
     public function getCategory(): ?Category
@@ -137,6 +129,4 @@ class Question
 
         return $this;
     }
-
-
 }

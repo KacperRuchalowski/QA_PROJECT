@@ -64,7 +64,6 @@ class AnswerType extends AbstractType
         $builder->add('is_best', HiddenType::class, [
             'data' => '0',
         ]);
-
     }
 
     /**

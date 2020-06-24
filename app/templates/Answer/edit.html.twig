@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title_category_edit'|trans({'%id%': answer.id|default('')}) }}
+    {{ 'title_answer_edit'|trans({'%id%': answer.id|default('')}) }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title_category_edit'|trans({'%id%': category.id|default('')}) }}</h1>
+    <h1>{{ 'title_answer_edit'|trans({'%id%': category.id|default('')}) }}</h1>
     {{ form_start(form, { method: 'PUT', action: url('answer_edit', {id: answer.id}) }) }}
     {{ form_widget(form) }}
     <div class="form-group row float-sm-right">

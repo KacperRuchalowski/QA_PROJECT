@@ -25,9 +25,9 @@ class CategoryController extends AbstractController
     /**
      * Index action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
-     * @param \App\Repository\QuestionRepository $categoryRepository CategoryRepository
-     * @param \Knp\Component\Pager\PaginatorInterface $paginator Paginator
+     * @param \Symfony\Component\HttpFoundation\Request $request            HTTP request
+     * @param \App\Repository\QuestionRepository        $categoryRepository CategoryRepository
+     * @param \Knp\Component\Pager\PaginatorInterface   $paginator          Paginator
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -54,9 +54,7 @@ class CategoryController extends AbstractController
 
     /**
      * @param CategoryRepository $categoryRepository
-     * @param int $id
-     *
-     * @return Response
+     * @param int                $id
      *
      * @Route(
      *
@@ -77,8 +75,8 @@ class CategoryController extends AbstractController
     /**
      * Create action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
-     * @param \App\Repository\CategoryRepository $categoryRepository Category repository
+     * @param \Symfony\Component\HttpFoundation\Request $request            HTTP request
+     * @param \App\Repository\CategoryRepository        $categoryRepository Category repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -114,9 +112,9 @@ class CategoryController extends AbstractController
     /**
      * Edit action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
-     * @param \App\Entity\Category $category Category entity
-     * @param \App\Repository\CategoryRepository $categoryRepository Category repository
+     * @param \Symfony\Component\HttpFoundation\Request $request            HTTP request
+     * @param \App\Entity\Category                      $category           Category entity
+     * @param \App\Repository\CategoryRepository        $categoryRepository Category repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -155,9 +153,9 @@ class CategoryController extends AbstractController
     /**
      * Delete action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
-     * @param \App\Entity\Category $category Category entity
-     * @param \App\Repository\CategoryRepository $categoryRepository Category repository
+     * @param \Symfony\Component\HttpFoundation\Request $request            HTTP request
+     * @param \App\Entity\Category                      $category           Category entity
+     * @param \App\Repository\CategoryRepository        $categoryRepository Category repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -178,8 +176,6 @@ class CategoryController extends AbstractController
 
             return $this->redirectToRoute('category_index');
         }
-
-
 
         $form = $this->createForm(FormType::class, $category, ['method' => 'DELETE']);
         $form->handleRequest($request);
@@ -202,7 +198,5 @@ class CategoryController extends AbstractController
                 'category' => $category,
             ]
         );
-
-
     }
 }

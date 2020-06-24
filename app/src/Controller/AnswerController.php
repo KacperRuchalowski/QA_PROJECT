@@ -9,10 +9,10 @@ use App\Entity\Answer;
 use App\Form\AnswerBestType;
 use App\Form\AnswerType;
 use App\Repository\AnswerRepository;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\HttpFoundation\Request;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -25,9 +25,11 @@ class AnswerController extends AbstractController
 {
     /**
      * Index action.
-     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
-     * @param \App\Repository\AnswerRepository $answerRepository AnswerRepository
-     * @param \Knp\Component\Pager\PaginatorInterface $paginator Paginator
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request          HTTP request
+     * @param \App\Repository\AnswerRepository          $answerRepository AnswerRepository
+     * @param \Knp\Component\Pager\PaginatorInterface   $paginator        Paginator
+     *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
      * @Route(
@@ -45,7 +47,6 @@ class AnswerController extends AbstractController
             AnswerRepository::PAGINATOR_ITEMS_PER_PAGE
         );
 
-
         return $this->render(
             'Answer/index.html.twig',
             ['pagination' => $pagination]
@@ -54,7 +55,8 @@ class AnswerController extends AbstractController
 
     /**
      * @param AnswerRepository $answerRepository
-     * @param int $id
+     * @param int              $id
+     *
      * @return Response
      *
      * @Route(
@@ -65,8 +67,6 @@ class AnswerController extends AbstractController
      *     requirements={"id": "[1-9]\d*"},
      * )
      **/
-
-
     public function show(Answer $answer): Response
     {
         return $this->render(
@@ -75,12 +75,11 @@ class AnswerController extends AbstractController
         );
     }
 
-
     /**
      * Create action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
-     * @param \App\Repository\AnswerRepository $answerRepository Answer repository
+     * @param \Symfony\Component\HttpFoundation\Request $request          HTTP request
+     * @param \App\Repository\AnswerRepository          $answerRepository Answer repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -114,9 +113,9 @@ class AnswerController extends AbstractController
     /**
      * Edit action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
-     * @param \App\Entity\Answer $answer Answer entity
-     * @param \App\Repository\AnswerRepository $answerRepository Answer repository
+     * @param \Symfony\Component\HttpFoundation\Request $request          HTTP request
+     * @param \App\Entity\Answer                        $answer           Answer entity
+     * @param \App\Repository\AnswerRepository          $answerRepository Answer repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -134,9 +133,9 @@ class AnswerController extends AbstractController
     /**
      * Edit action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
-     * @param \App\Entity\Answer $answer Answer entity
-     * @param \App\Repository\AnswerRepository $answerRepository Answer repository
+     * @param \Symfony\Component\HttpFoundation\Request $request          HTTP request
+     * @param \App\Entity\Answer                        $answer           Answer entity
+     * @param \App\Repository\AnswerRepository          $answerRepository Answer repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -154,7 +153,6 @@ class AnswerController extends AbstractController
     {
         $form = $this->createForm(AnswerType::class, $answer, ['method' => 'PUT']);
         $form->handleRequest($request);
-
 
         if ($form->isSubmitted() && $form->isValid()) {
             $answerRepository->save($answer);
@@ -176,9 +174,9 @@ class AnswerController extends AbstractController
     /**
      * Delete action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
-     * @param \App\Entity\Answer $answer Answer entity
-     * @param \App\Repository\AnswerRepository $answerRepository Answer repository
+     * @param \Symfony\Component\HttpFoundation\Request $request          HTTP request
+     * @param \App\Entity\Answer                        $answer           Answer entity
+     * @param \App\Repository\AnswerRepository          $answerRepository Answer repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -220,9 +218,9 @@ class AnswerController extends AbstractController
     /**
      * Best action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
-     * @param \App\Entity\Answer $answer Answer entity
-     * @param \App\Repository\AnswerRepository $answerRepository Answer repository
+     * @param \Symfony\Component\HttpFoundation\Request $request          HTTP request
+     * @param \App\Entity\Answer                        $answer           Answer entity
+     * @param \App\Repository\AnswerRepository          $answerRepository Answer repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -236,12 +234,10 @@ class AnswerController extends AbstractController
      *     name="answer_best",
      * )
      */
-
-    public function best (Request $request, Answer $answer, AnswerRepository $answerRepository): Response
+    public function best(Request $request, Answer $answer, AnswerRepository $answerRepository): Response
     {
         $form = $this->createForm(AnswerBestType::class, $answer, ['method' => 'PUT']);
         $form->handleRequest($request);
-
 
         if ($form->isSubmitted() && $form->isValid()) {
             $answerRepository->save($answer);
@@ -259,8 +255,4 @@ class AnswerController extends AbstractController
             ]
         );
     }
-
-
-
 }
-

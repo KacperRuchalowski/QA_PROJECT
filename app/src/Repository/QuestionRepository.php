@@ -5,7 +5,6 @@
 
 namespace App\Repository;
 
-
 use App\Entity\Question;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -80,6 +79,7 @@ class QuestionRepository extends ServiceEntityRepository
     }
 
     // ...
+
     /**
      * Delete record.
      *
@@ -93,5 +93,4 @@ class QuestionRepository extends ServiceEntityRepository
         $this->_em->remove($question);
         $this->_em->flush($question);
     }
-
 }

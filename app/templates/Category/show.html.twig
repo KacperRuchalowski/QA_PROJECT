@@ -1,24 +1,22 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'Question Details'|trans({'%id%': category.id|default('')}) }}
+    {{ 'title_category_details'|trans({'%id%': category.id|default('')}) }}
 {% endblock %}
 
 {% block body %}
-<h1>{{ 'Question Details'|trans({'%id%': category.id|default('')}) }}</h1>
+<h1>{{ 'title_category_details'|trans({'%id%': category.id|default('')}) }}</h1>
 {% if category is defined and category|length %}
 
 <dl class="dl-horizontal">
-    <dt>{{ 'ID'|trans }}</dt>
-    <dd>{{ category.id }}</dd>
-    <dt>{{ 'Title'|trans }}</dt>
+    <dt>{{ 'label_category_title'|trans }}</dt>
     <dd>{{ category.name|trans }}</dd>
-    <dt>{{ 'Question'|trans }}</dt>
+    <dt>{{ 'label_question_title'|trans }}</dt>
     {% for question in category.questions %}
 
     <dd> {{ question.titleQuestion }}</dd>
-        <a href="{{ url('question_show', {id: question.id}) }}" title="{{ 'Show '|trans }}">
-            {{ 'Show '|trans }}
+        <a href="{{ url('question_show', {id: question.id}) }}" title="{{ 'label_category_show'|trans }}">
+            {{ 'label_category_show'|trans }}
         </a>
 
     {% endfor %}
@@ -27,8 +25,8 @@
 {% endif %}
 
     <p>
-        <a href="{{ url('category_index') }}" title="{{ 'Back'|trans }}">
-            {{ 'Back'|trans }}
+        <a href="{{ url('category_index') }}" title="{{ 'label_category_back'|trans }}">
+            {{ 'label_category_back'|trans }}
         </a>
     </p>
 

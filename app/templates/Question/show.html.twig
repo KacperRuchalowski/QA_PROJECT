@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'Question Details'|trans({'%id%': question.id|default('')}) }}
+    {{ 'label_question_details'|trans({'%id%': question.id|default('')}) }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'Question Details'|trans({'%id%': question.id|default('')}) }}</h1>
+    <h1>{{ 'label_question_details'|trans({'%id%': question.id|default('')}) }}</h1>
     {% if question is defined and question|length %}
         <dl class="dl-horizontal">
-            <dt>{{ 'Title'|trans }}</dt>
+            <dt>{{ 'label_question_title'|trans }}</dt>
             <dd>{{ question.TitleQuestion|trans }}</dd>
-            <dt>{{ 'Content'|trans }}</dt>
+            <dt>{{ 'label_question_content'|trans }}</dt>
             <dd>{{ question.Content }}</dd>
-            <dt>{{ 'Category'|trans }}</dt>
+            <dt>{{ 'label_question_category'|trans }}</dt>
             <dd>{{  question.category.name }}</dd>
         </dl>
 
@@ -47,16 +47,16 @@
                             {% if is_granted ('ROLE_ADMIN') %}
 
 
-                            <a href="{{ url('answer_edit', {id: answers.id}) }}" title="{{ 'Edit '|trans }}">
-                                {{ 'Edit '|trans }}
+                            <a href="{{ url('answer_edit', {id: answers.id}) }}" title="{{ 'label_answer_edit'|trans }}">
+                                {{ 'label_answer_edit'|trans }}
                             </a>
 
-                            <a href="{{ url('answer_delete', {id: answers.id}) }}" title="{{ 'Delete '|trans }}">
-                                {{ 'Delete '|trans }}
+                            <a href="{{ url('answer_delete', {id: answers.id}) }}" title="{{ 'label_answer_delete'|trans }}">
+                                {{ 'label_answer_delete'|trans }}
                             </a>
 
-                            <a href="{{ url('answer_best', {id: answers.id}) }}" title="{{ 'Is Best '|trans }}">
-                                {{ 'Is Best '|trans }}
+                            <a href="{{ url('answer_best', {id: answers.id}) }}" title="{{ 'label_answer_isBest'|trans }}">
+                                {{ 'label_answer_isBest'|trans }}
                             </a>
 
 

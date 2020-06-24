@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'Question List'|trans }}
+    {{ 'title_question_list'|trans }}
 {% endblock %}
 
 
@@ -9,11 +9,11 @@
 
 
 
-    <h1>{{ 'Question List'|trans }}</h1>
+    <h1>{{ 'title_question_list'|trans }}</h1>
 
     {% if is_granted ('ROLE_ADMIN') %}
-        <a href="{{ url('question_create') }}" title="{{ 'Create '|trans }}">
-            {{ 'Create '|trans }}
+        <a href="{{ url('question_create') }}" title="{{ 'label_create_question'|trans }}">
+            {{ 'label_create_question'|trans }}
         </a>
     {% endif %}
 
@@ -25,10 +25,10 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'Created:'|trans, 'question.createdAt') }}</th>
-                <th>{{ 'Title'|trans }}</th>
-                <th>{{ 'Content'|trans }}</th>
-                <th>{{ 'Category'|trans }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_Created_at:'|trans, 'question.createdAt') }}</th>
+                <th>{{ 'label_question_title'|trans }}</th>
+                <th>{{ 'label_question_content'|trans }}</th>
+                <th>{{ 'label_question_category'|trans }}</th>
                 <th>{{ 'Actions'|trans }}</th>
             </tr>
             </thead>
@@ -41,17 +41,17 @@
                     <td>{{ question.category.name }}</td>
 
                     <td>
-                        <a href="{{ url('question_show', {id: question.id}) }}" title="{{ 'Show '|trans }}">
-                            {{ 'Show '|trans }}
+                        <a href="{{ url('question_show', {id: question.id}) }}" title="{{ 'label_question_show'|trans }}">
+                            {{ 'label_question_show'|trans }}
                         </a>
                         {% if is_granted ('ROLE_ADMIN') %}
-                        <a href="{{ url('question_edit', {id: question.id}) }}" title="{{ 'Edit '|trans }}">
-                            {{ 'Edit '|trans }}
+                        <a href="{{ url('question_edit', {id: question.id}) }}" title="{{ 'label_question_edit'|trans }}">
+                            {{ 'label_question_edit'|trans }}
                         </a>
 
                         {% if not question.answers|length %}
-                        <a href="{{ url('question_delete', {id: question.id}) }}" title="{{ 'Delete '|trans }}">
-                            {{ 'Delete '|trans }}
+                        <a href="{{ url('question_delete', {id: question.id}) }}" title="{{ 'label_question_delete'|trans }}">
+                            {{ 'label_question_delete'|trans }}
                         </a>
 
                         {% endif %}

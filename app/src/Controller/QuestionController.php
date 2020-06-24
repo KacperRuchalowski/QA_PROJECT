@@ -59,10 +59,6 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @param Request $request
-     * @param Question $question
-     * @param AnswerRepository $answerRepository
-     * @return Response
      * @throws ORMException
      * @throws OptimisticLockException
      * @Route(
@@ -72,7 +68,6 @@ class QuestionController extends AbstractController
      *     name="question_show",
      *     requirements={"id": "[1-9]\d*"},
      * )
-     *
      */
     public function show(Request $request, Question $question, AnswerRepository $answerRepository): Response
     {

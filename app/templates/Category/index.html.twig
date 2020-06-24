@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'Category List'|trans }}
+    {{ 'title_category_list'|trans }}
 {% endblock %}
 
 
@@ -9,11 +9,11 @@
 
 
 
-    <h1>{{ 'Category List'|trans }}</h1>
+    <h1>{{ 'title_category_list'|trans }}</h1>
 
     {% if is_granted ('ROLE_ADMIN') %}
-    <a href="{{ url('category_create') }}" title="{{ 'Create '|trans }}">
-        {{ 'Create '|trans }}
+    <a href="{{ url('category_create') }}" title="{{ 'label_create_category '|trans }}">
+        {{ 'label_create_category'|trans }}
     </a>
     {% endif %}
 
@@ -24,7 +24,7 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ 'Title'|trans }}</th>
+                <th>{{ 'label_category_title'|trans }}</th>
                 <th>{{ 'Actions'|trans }}</th>
             </tr>
             </thead>
@@ -33,17 +33,17 @@
                 <tr>
                     <td>{{ category.name }}</td>
                     <td>
-                        <a href="{{ url('category_show', {id: category.id}) }}" title="{{ 'Show '|trans }}">
-                            {{ 'Show '|trans }}
+                        <a href="{{ url('category_show', {id: category.id}) }}" title="{{ 'label_category_show'|trans }}">
+                            {{ 'label_category_show '|trans }}
                         </a>
                         {% if is_granted ('ROLE_ADMIN') %}
-                        <a href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'Edit '|trans }}">
-                            {{ 'Edit '|trans }}
+                        <a href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'label_category_edit'|trans }}">
+                            {{ 'label_category_edit'|trans }}
                         </a>
 
                         {% if not category.questions|length %}
-                        <a href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'Delete '|trans }}">
-                            {{ 'Delete '|trans }}
+                        <a href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'label_category_delete'|trans }}">
+                            {{ 'label_category_delete'|trans }}
                         </a>
                         {% endif %}
 

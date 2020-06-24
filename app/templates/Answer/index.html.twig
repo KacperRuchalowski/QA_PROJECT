@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'Answer List'|trans }}
+    {{ 'label_answer_list'|trans }}
 {% endblock %}
 
 
 {% block body %}
-    <h1>{{ 'Answer List'|trans }}</h1>
+    <h1>{{ 'label_answer_list'|trans }}</h1>
     {% if question is defined and question|length %}
         <div >
             {% for answers in question.answers %}
