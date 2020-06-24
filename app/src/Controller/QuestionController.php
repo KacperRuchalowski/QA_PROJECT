@@ -11,10 +11,13 @@ use App\Form\AnswerType;
 use App\Form\QuestionType;
 use App\Repository\AnswerRepository;
 use App\Repository\QuestionRepository;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\HttpFoundation\Request;
+use DateTime;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -27,10 +30,12 @@ class QuestionController extends AbstractController
 {
     /**
      * Index action.
-     * @param \Symfony\Component\HttpFoundation\Request $request        HTTP request
-     * @param \App\Repository\QuestionRepository $questionRepository QuestionRepository
-     * @param \Knp\Component\Pager\PaginatorInterface   $paginator      Paginator
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     *
+     * @param Request            $request            HTTP request
+     * @param QuestionRepository $questionRepository QuestionRepository
+     * @param PaginatorInterface $paginator          Paginator
+     *
+     * @return Response HTTP response
      *
      * @Route(
      *     "/",
@@ -47,8 +52,6 @@ class QuestionController extends AbstractController
             QuestionRepository::PAGINATOR_ITEMS_PER_PAGE
         );
 
-
-
         return $this->render(
             'question/index.html.twig',
             ['pagination' => $pagination]
@@ -56,10 +59,12 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @param QuestionRepository $questionRepository
-     * @param int $id
+     * @param Request $request
+     * @param Question $question
+     * @param AnswerRepository $answerRepository
      * @return Response
-     *
+     * @throws ORMException
+     * @throws OptimisticLockException
      * @Route(
      *
      *     "/{id}",
@@ -67,25 +72,20 @@ class QuestionController extends AbstractController
      *     name="question_show",
      *     requirements={"id": "[1-9]\d*"},
      * )
-     **/
-
-
-
+     *
+     */
     public function show(Request $request, Question $question, AnswerRepository $answerRepository): Response
     {
         $answer = new Answer();
         $form = $this->createForm(AnswerType::class, $answer);
         $form->handleRequest($request);
-        $id=$question->getId();
+        $id = $question->getId();
         if ($form->isSubmitted() && $form->isValid()) {
-
             $answer->setQuestion($question);
             $answerRepository->save($answer);
 
-
-            return $this->redirectToRoute('question_show', ['id'=> $id]);
+            return $this->redirectToRoute('question_show', ['id' => $id]);
         }
-
 
         return $this->render(
             'question/show.html.twig',
@@ -96,13 +96,13 @@ class QuestionController extends AbstractController
     /**
      * Create action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request            HTTP request
-     * @param \App\Repository\QuestionRepository        $questionRepository Question repository
+     * @param Request            $request            HTTP request
+     * @param QuestionRepository $questionRepository Question repository
      *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     * @return Response HTTP response
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws ORMException
+     * @throws OptimisticLockException
      *
      * @Route(
      *     "/create",
@@ -113,14 +113,14 @@ class QuestionController extends AbstractController
     public function create(Request $request, QuestionRepository $questionRepository): Response
     {
         $question = new Question();
+
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $question->setCreatedAt(new DateTime());
             $questionRepository->save($question);
-
             $this->addFlash('success', 'message_created_successfully');
-
 
             return $this->redirectToRoute('question_index');
         }
@@ -134,14 +134,14 @@ class QuestionController extends AbstractController
     /**
      * Edit action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request            HTTP request
-     * @param \App\Entity\Question                     $question           Question entity
-     * @param \App\Repository\QuestionRepository        $questionRepository Question repository
+     * @param Request            $request            HTTP request
+     * @param Question           $question           Question entity
+     * @param QuestionRepository $questionRepository Question repository
      *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     * @return Response HTTP response
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws ORMException
+     * @throws OptimisticLockException
      *
      * @Route(
      *     "/{id}/edit",
@@ -175,14 +175,14 @@ class QuestionController extends AbstractController
     /**
      * Delete action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request            HTTP request
-     * @param \App\Entity\Question                      $question           Question entity
-     * @param \App\Repository\QuestionRepository        $questionRepository Question repository
+     * @param Request            $request            HTTP request
+     * @param Question           $question           Question entity
+     * @param QuestionRepository $questionRepository Question repository
      *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     * @return Response HTTP response
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws ORMException
+     * @throws OptimisticLockException
      *
      * @Route(
      *     "/{id}/delete",
@@ -193,6 +193,12 @@ class QuestionController extends AbstractController
      */
     public function delete(Request $request, Question $question, QuestionRepository $questionRepository): Response
     {
+        if ($question->getAnswers()->count()) {
+            $this->addFlash('warning', 'message_category_contains_tasks');
+
+            return $this->redirectToRoute('question_index');
+        }
+
         $form = $this->createForm(FormType::class, $question, ['method' => 'DELETE']);
         $form->handleRequest($request);
 
@@ -215,8 +221,4 @@ class QuestionController extends AbstractController
             ]
         );
     }
-
-
-
-
 }

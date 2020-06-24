@@ -11,9 +11,6 @@
 
     <h1>{{ 'User List'|trans }}</h1>
 
-    <a href="{{ url('user_create') }}" title="{{ 'Create '|trans }}">
-        {{ 'Create '|trans }}
-    </a>
 
     {% if pagination is defined and pagination.items|length %}
 
@@ -22,7 +19,6 @@
             <thead>
             <tr>
                 <th>{{ 'Email'|trans }}</th>
-                <th>{{ 'Password'|trans }}</th>
                 <th>{{ 'Actions'|trans }}</th>
             </tr>
             </thead>
@@ -30,7 +26,6 @@
             {% for user in pagination.items %}
                 <tr>
                     <td>{{ user.email }}</td>
-                    <td>{{ user.password }}</td>
                     <td>
                             <a href="{{ url('user_edit', {id: user.id}) }}" title="{{ 'Edit '|trans }}">
                                 {{ 'Edit '|trans }}

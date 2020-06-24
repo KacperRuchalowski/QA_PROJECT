@@ -11,6 +11,12 @@
 
     <h1>{{ 'Question List'|trans }}</h1>
 
+    {% if is_granted ('ROLE_ADMIN') %}
+        <a href="{{ url('question_create') }}" title="{{ 'Create '|trans }}">
+            {{ 'Create '|trans }}
+        </a>
+    {% endif %}
+
 
 
     {% if pagination is defined and pagination.items|length %}
@@ -19,8 +25,9 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'Title'|trans, 'question.TitleQuestion') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Content'|trans, 'question.Content') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Created:'|trans, 'question.createdAt') }}</th>
+                <th>{{ 'Title'|trans }}</th>
+                <th>{{ 'Content'|trans }}</th>
                 <th>{{ 'Category'|trans }}</th>
                 <th>{{ 'Actions'|trans }}</th>
             </tr>
@@ -28,9 +35,11 @@
             <tbody>
             {% for question in pagination.items %}
                 <tr>
+                    <td>{{ question.createdAt|date('Y/m/d') }}</td>
                     <td>{{ question.TitleQuestion }}</td>
                     <td>{{ question.Content }}</td>
                     <td>{{ question.category.name }}</td>
+
                     <td>
                         <a href="{{ url('question_show', {id: question.id}) }}" title="{{ 'Show '|trans }}">
                             {{ 'Show '|trans }}
@@ -40,9 +49,13 @@
                             {{ 'Edit '|trans }}
                         </a>
 
+                        {% if not question.answers|length %}
                         <a href="{{ url('question_delete', {id: question.id}) }}" title="{{ 'Delete '|trans }}">
                             {{ 'Delete '|trans }}
                         </a>
+
+                        {% endif %}
+
                         {% endif %}
                     </td>
                 </tr>

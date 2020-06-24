@@ -26,6 +26,7 @@ class QuestionFixture extends AbstractBaseFixtures implements DependentFixtureIn
             $task->setTitleQuestion($this->faker->word);
             $task->setContent($this->faker->sentence);
             $task->setCategory($this->getRandomReference('categories'));
+            $task->setCreatedAt($this->faker->dateTimeBetween('-100 days', '-1 days'));
 
             return $task;
         });

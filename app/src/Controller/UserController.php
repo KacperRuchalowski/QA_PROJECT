@@ -53,9 +53,6 @@ class UserController extends AbstractController
     }
 
     /**
-     * @param UserRepository $userRepository
-     * @param int            $id
-     *
      * @Route(
      *
      *     "/{id}",
@@ -63,47 +60,12 @@ class UserController extends AbstractController
      *     name="user_show",
      *     requirements={"id": "[1-9]\d*"},
      * )
-     **/
+     */
     public function show(User $user): Response
     {
         return $this->render(
             'User/show.html.twig',
             ['user' => $user]
-        );
-    }
-
-    /**
-     * Create action.
-     *
-     * @param Request                            $request        HTTP request
-     * @param \App\Repository\UserRepository $userRepository User repository
-     *
-     * @return Response HTTP response
-     *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     *
-     * @Route(
-     *     "/create",
-     *     methods={"GET", "POST"},
-     *     name="user_create",
-     * )
-     */
-    public function create(Request $request, UserRepository $userRepository): Response
-    {
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $userRepository->save($user);
-
-            return $this->redirectToRoute('user_index');
-        }
-
-        return $this->render(
-            'user/create.html.twig',
-            ['form' => $form->createView()]
         );
     }
 
