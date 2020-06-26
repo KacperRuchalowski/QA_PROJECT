@@ -15,6 +15,7 @@ use App\Service\QuestionService;
 use DateTime;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -115,6 +116,8 @@ class QuestionController extends AbstractController
      *
      * @return Response HTTP response
      *
+     * @IsGranted("ROLE_ADMIN")
+     *
      * @throws ORMException
      * @throws OptimisticLockException
      *
@@ -153,6 +156,8 @@ class QuestionController extends AbstractController
      * @param QuestionRepository $questionRepository Question repository
      *
      * @return Response HTTP response
+     *
+     * @IsGranted("ROLE_ADMIN")
      *
      * @throws ORMException
      * @throws OptimisticLockException
@@ -197,6 +202,8 @@ class QuestionController extends AbstractController
      *
      * @throws ORMException
      * @throws OptimisticLockException
+     *
+     * @IsGranted("ROLE_ADMIN")
      *
      * @Route(
      *     "/{id}/delete",

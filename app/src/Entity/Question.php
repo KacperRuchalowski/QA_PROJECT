@@ -6,6 +6,7 @@
 
 namespace App\Entity;
 
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -67,11 +68,18 @@ class Question
 
     /**
      * @ORM\OneToMany(targetEntity=Answer::class, mappedBy="question")
+     *
      */
     private $answers;
 
     /**
+     * Created at.
+     *
+     * @var DateTimeInterface
+     *
      * @ORM\Column(type="datetime")
+     *
+     * @Assert\Type(type="\DateTimeInterface")
      */
     private $createdAt;
 

@@ -283,7 +283,7 @@
 
             <trans-unit id="label_title_category">
                 <source>label_title_category</source>
-                <target>Nazwa kategorii</target>
+                <target>Odpowiedź</target>
             </trans-unit>
 
             <trans-unit id="label_email">

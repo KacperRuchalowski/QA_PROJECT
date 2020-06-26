@@ -284,7 +284,7 @@
 
             <trans-unit id="label_title_category">
                 <source>label_title_category</source>
-                <target> Category title </target>
+                <target> Answer </target>
             </trans-unit>
 
             <trans-unit id="label_email">

@@ -9,6 +9,9 @@ use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use App\Service\CategoryService;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,14 +28,14 @@ class CategoryController extends AbstractController
 /**
 * Category service.
 *
-* @var \App\Service\CategoryService
-     */
+* @var CategoryService
+ */
     private $categoryService;
 
     /**
      * CategoryController constructor.
      *
-     * @param \App\Service\CategoryService $categoryService Category service
+     * @param CategoryService $categoryService Category service
      */
     public function __construct(CategoryService $categoryService)
     {
@@ -91,8 +94,10 @@ class CategoryController extends AbstractController
      *
      * @return Response HTTP response
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @IsGranted("ROLE_ADMIN")
+     *
+     * @throws ORMException
+     * @throws OptimisticLockException
      *
      * @Route(
      *     "/create",
@@ -123,14 +128,16 @@ class CategoryController extends AbstractController
     /**
      * Edit action.
      *
-     * @param Request              $request            HTTP request
-     * @param \App\Entity\Category $category           Category entity
-     * @param CategoryRepository   $categoryRepository Category repository
+     * @param Request            $request            HTTP request
+     * @param Category           $category           Category entity
+     * @param CategoryRepository $categoryRepository Category repository
+     *
+     * @IsGranted("ROLE_ADMIN")
      *
      * @return Response HTTP response
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws ORMException
+     * @throws OptimisticLockException
      *
      * @Route(
      *     "/{id}/edit",
@@ -164,14 +171,16 @@ class CategoryController extends AbstractController
     /**
      * Delete action.
      *
-     * @param Request              $request            HTTP request
-     * @param \App\Entity\Category $category           Category entity
-     * @param CategoryRepository   $categoryRepository Category repository
+     * @param Request            $request            HTTP request
+     * @param Category           $category           Category entity
+     * @param CategoryRepository $categoryRepository Category repository
      *
      * @return Response HTTP response
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @IsGranted("ROLE_ADMIN")
+     *
+     * @throws ORMException
+     * @throws OptimisticLockException
      *
      * @Route(
      *     "/{id}/delete",

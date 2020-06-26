@@ -11,6 +11,7 @@ use App\Repository\UserRepository;
 use App\Service\UserService;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -94,6 +95,8 @@ class UserController extends AbstractController
      * @param User                         $user            User entity
      * @param UserRepository               $userRepository  User repository
      * @param UserPasswordEncoderInterface $passwordEncoder PasswordEncoder
+     *
+     * @IsGranted("ROLE_ADMIN")
      *
      * @return Response HTTP response
      *

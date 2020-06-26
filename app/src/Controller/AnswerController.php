@@ -10,6 +10,9 @@ use App\Form\AnswerBestType;
 use App\Form\AnswerType;
 use App\Repository\AnswerRepository;
 use App\Service\AnswerService;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,14 +29,14 @@ class AnswerController extends AbstractController
     /**
      * Answer service.
      *
-     * @var \App\Service\AnswerService
+     * @var AnswerService
      */
     private $answerService;
 
     /**
      * AnswerService constructor.
      *
-     * @param \App\Service\AnswerService $answerService Answer service
+     * @param AnswerService $answerService Answer service
      */
     public function __construct(AnswerService $answerService)
     {
@@ -43,9 +46,9 @@ class AnswerController extends AbstractController
     /**
      * Index action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
+     * @param Request $request HTTP request
      *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     * @return Response HTTP response
      *
      * @Route(
      *     "/",
@@ -89,13 +92,13 @@ class AnswerController extends AbstractController
     /**
      * Create action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request          HTTP request
-     * @param \App\Repository\AnswerRepository          $answerRepository Answer repository
+     * @param Request          $request          HTTP request
+     * @param AnswerRepository $answerRepository Answer repository
      *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     * @return Response HTTP response
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws ORMException
+     * @throws OptimisticLockException
      *
      * @Route(
      *     "/create",
@@ -126,14 +129,16 @@ class AnswerController extends AbstractController
     /**
      * Edit action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request          HTTP request
-     * @param \App\Entity\Answer                        $answer           Answer entity
-     * @param \App\Repository\AnswerRepository          $answerRepository Answer repository
+     * @param Request          $request          HTTP request
+     * @param Answer           $answer           Answer entity
+     * @param AnswerRepository $answerRepository Answer repository
      *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     * @return Response HTTP response
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @IsGranted("ROLE_ADMIN")
+     *
+     * @throws ORMException
+     * @throws OptimisticLockException
      *
      * @Route(
      *     "/{id}/edit",
@@ -167,14 +172,16 @@ class AnswerController extends AbstractController
     /**
      * Delete action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request          HTTP request
-     * @param \App\Entity\Answer                        $answer           Answer entity
-     * @param \App\Repository\AnswerRepository          $answerRepository Answer repository
+     * @param Request          $request          HTTP request
+     * @param Answer           $answer           Answer entity
+     * @param AnswerRepository $answerRepository Answer repository
      *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     * @return Response HTTP response
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @IsGranted("ROLE_ADMIN")
+     *
+     * @throws ORMException
+     * @throws OptimisticLockException
      *
      * @Route(
      *     "/{id}/delete",
@@ -211,14 +218,14 @@ class AnswerController extends AbstractController
     /**
      * Best action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request          HTTP request
-     * @param \App\Entity\Answer                        $answer           Answer entity
-     * @param \App\Repository\AnswerRepository          $answerRepository Answer repository
+     * @param Request          $request          HTTP request
+     * @param Answer           $answer           Answer entity
+     * @param AnswerRepository $answerRepository Answer repository
      *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     * @return Response HTTP response
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws ORMException
+     * @throws OptimisticLockException
      *
      * @Route(
      *     "/{id}/best",

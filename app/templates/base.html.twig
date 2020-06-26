@@ -19,6 +19,7 @@
             <a class="nav-item nav-link" href="{{ url('category_index') }}">{{ 'menu_categories'|trans }}</a>
         </div>
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                {{ app.user.email }}
                 <a class="nav-item nav-link" href="{{ url('user_index') }}">{{ 'menu_users'|trans }}</a>
                 <div>
                 <a class="btn btn-secondary" href="{{ url('app_logout') }}">{{ 'action_logout'|trans }}</a>
@@ -27,17 +28,6 @@
                 </div>
             {% endif %}
 </nav>
-
-{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-    <div>{{ app.user.email }}</div>
-    <div>
-
-
-
-    </div>
-{% else %}
-
-{% endif %}
 
 
 

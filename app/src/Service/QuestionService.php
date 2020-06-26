@@ -46,12 +46,12 @@ class QuestionService
      *
      * @param int $page Page number
      *
-     * @return \Knp\Component\Pager\Pagination\PaginationInterface Paginated list
+     * @return PaginationInterface Paginated list
      */
     public function createPaginatedList(int $page): PaginationInterface
     {
         return $this->paginator->paginate(
-            $this->questionRepository->findAll(),
+            $this->questionRepository->queryAll(),
             $page,
             QuestionRepository::PAGINATOR_ITEMS_PER_PAGE
         );
