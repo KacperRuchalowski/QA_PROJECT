@@ -35,7 +35,7 @@ class QuestionType extends AbstractType
             'titleQuestion',
             TextType::class,
             [
-                'label' => 'label_title',
+                'label' => 'label_title_question',
                 'required' => true,
                 'attr' => ['max_length' => 64],
             ]
@@ -60,7 +60,7 @@ class QuestionType extends AbstractType
                     return $category->getName();
                 },
                 'label' => 'label_category',
-                'placeholder' => 'label_none',
+                'placeholder' => 'Category',
                 'required' => true,
             ]
         );

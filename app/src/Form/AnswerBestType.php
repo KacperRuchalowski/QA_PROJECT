@@ -33,8 +33,8 @@ class AnswerBestType extends AbstractType
         $builder->add('is_best', ChoiceType::class, [
             'label' => 'label_isBest',
             'choices' => [
-                'Yes' => true,
-                'No' => false,
+                '✓' => true,
+                'x' => false,
             ],
         ]);
     }

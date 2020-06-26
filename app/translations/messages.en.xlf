@@ -272,6 +272,50 @@
                 <target> Add Answer </target>
             </trans-unit>
 
+            <trans-unit id="label_isBest">
+                <source>label_isBest</source>
+                <target> Is this answer best? </target>
+            </trans-unit>
+
+            <trans-unit id="label_nick">
+                <source>label_nick</source>
+                <target> Nick </target>
+            </trans-unit>
+
+            <trans-unit id="label_title_category">
+                <source>label_title_category</source>
+                <target> Category title </target>
+            </trans-unit>
+
+            <trans-unit id="label_email">
+                <source>label_email</source>
+                <target> Email </target>
+            </trans-unit>
+
+            <trans-unit id="question_content">
+                <source>question_content</source>
+                <target> Question : </target>
+            </trans-unit>
+
+            <trans-unit id="label_title_question">
+                <source>label_title_question</source>
+                <target> Question Title </target>
+            </trans-unit>
+
+            <trans-unit id="label_category">
+                <source>label_category</source>
+                <target> Choose category: </target>
+            </trans-unit>
+
+            <trans-unit id="label_password">
+                <source>label_password</source>
+                <target> Password: </target>
+            </trans-unit>
+
+
+
+
+
 
 
 
