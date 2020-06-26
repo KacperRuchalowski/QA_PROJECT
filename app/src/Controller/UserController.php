@@ -112,7 +112,7 @@ class UserController extends AbstractController
             $password = $passwordEncoder->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
             $userRepository->save($user);
-            $this->addFlash('success', 'message_updated_successfully');
+            $this->addFlash('success', 'user_updated_successfully');
 
             return $this->redirectToRoute('user_index');
         }

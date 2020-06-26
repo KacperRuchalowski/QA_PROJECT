@@ -109,7 +109,7 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->categoryService->save($category);
 
-            $this->addFlash('success', 'message_created_successfully');
+            $this->addFlash('success', 'category_created_successfully');
 
             return $this->redirectToRoute('category_index');
         }
@@ -147,7 +147,7 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $categoryRepository->save($category);
 
-            $this->addFlash('success', 'message_updated_successfully');
+            $this->addFlash('success', 'category_updated_successfully');
 
             return $this->redirectToRoute('category_index');
         }
@@ -183,7 +183,6 @@ class CategoryController extends AbstractController
     public function delete(Request $request, Category $category, CategoryRepository $categoryRepository): Response
     {
         if ($category->getQuestions()->count()) {
-            $this->addFlash('warning', 'message_category_contains_tasks');
 
             return $this->redirectToRoute('category_index');
         }
@@ -197,7 +196,7 @@ class CategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $categoryRepository->delete($category);
-            $this->addFlash('success', 'message.deleted_successfully');
+            $this->addFlash('success', 'category.deleted_successfully');
 
             return $this->redirectToRoute('category_index');
         }

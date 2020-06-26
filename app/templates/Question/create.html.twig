@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title_question_create'|trans }}</h1>
+    <h1 class="display-4 d-flex justify-content-center">{{ 'title_question_create'|trans }}</h1>
     {{ form_start(form, { method: 'POST', action: url('question_create') }) }}
     {{ form_widget(form) }}
     <div class="form-group row float-sm-right">

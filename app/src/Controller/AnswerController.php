@@ -108,6 +108,8 @@ class AnswerController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $answerRepository->save($answer);
 
+            $this->addFlash('success', 'answer_created_successfully');
+
             return $this->redirectToRoute('answer_index');
         }
 
@@ -136,26 +138,6 @@ class AnswerController extends AbstractController
      *     name="answer_edit",
      * )
      */
-
-    /**
-     * Edit action.
-     *
-     * @param \Symfony\Component\HttpFoundation\Request $request          HTTP request
-     * @param \App\Entity\Answer                        $answer           Answer entity
-     * @param \App\Repository\AnswerRepository          $answerRepository Answer repository
-     *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
-     *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     *
-     * @Route(
-     *     "/{id}/edit",
-     *     methods={"GET", "PUT"},
-     *     requirements={"id": "[1-9]\d*"},
-     *     name="answer_edit",
-     * )
-     */
     public function edit(Request $request, Answer $answer, AnswerRepository $answerRepository): Response
     {
         $form = $this->createForm(AnswerType::class, $answer, ['method' => 'PUT']);
@@ -164,7 +146,7 @@ class AnswerController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $answerRepository->save($answer);
 
-            $this->addFlash('success', 'message_updated_successfully');
+            $this->addFlash('success', 'answer_updated_successfully');
 
             return $this->redirectToRoute('answer_index');
         }
@@ -208,7 +190,7 @@ class AnswerController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $answerRepository->delete($answer);
-            $this->addFlash('success', 'message.deleted_successfully');
+            $this->addFlash('success', 'answer.deleted_successfully');
 
             return $this->redirectToRoute('question_index');
         }

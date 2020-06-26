@@ -126,7 +126,7 @@ class QuestionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $question->setCreatedAt(new DateTime());
             $questionRepository->save($question);
-            $this->addFlash('success', 'message_created_successfully');
+            $this->addFlash('success', 'question_created_successfully');
 
             return $this->redirectToRoute('question_index');
         }
@@ -164,7 +164,7 @@ class QuestionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $questionRepository->save($question);
 
-            $this->addFlash('success', 'message_updated_successfully');
+            $this->addFlash('success', 'question_updated_successfully');
 
             return $this->redirectToRoute('question_index');
         }
@@ -200,7 +200,7 @@ class QuestionController extends AbstractController
     public function delete(Request $request, Question $question, QuestionRepository $questionRepository): Response
     {
         if ($question->getAnswers()->count()) {
-            $this->addFlash('warning', 'message_category_contains_tasks');
+            $this->addFlash('warning', 'message_category_contains_questions');
 
             return $this->redirectToRoute('question_index');
         }
@@ -214,7 +214,7 @@ class QuestionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $questionRepository->delete($question);
-            $this->addFlash('success', 'message.deleted_successfully');
+            $this->addFlash('success', 'question.deleted_successfully');
 
             return $this->redirectToRoute('question_index');
         }

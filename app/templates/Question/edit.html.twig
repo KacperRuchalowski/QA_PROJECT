@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title_question_edit'|trans({'%id%': question.id|default('')}) }}</h1>
+    <h1 class="display-4 d-flex justify-content-center">{{ 'title_question_edit'|trans({'%id%': question.id|default('')}) }}</h1>
     {{ form_start(form, { method: 'PUT', action: url('question_edit', {id: question.id}) }) }}
     {{ form_widget(form) }}
     <div class="form-group row float-sm-right">

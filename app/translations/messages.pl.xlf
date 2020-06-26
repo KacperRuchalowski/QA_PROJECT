@@ -311,6 +311,56 @@
                 <target>Hasło</target>
             </trans-unit>
 
+            <trans-unit id="question_created_successfully">
+                <source>question_created_successfully</source>
+                <target> Pytanie utworzone </target>
+            </trans-unit>
+
+            <trans-unit id="question_updated_successfully">
+                <source>question_updated_successfully</source>
+                <target> Pytanie zostało zedytowane </target>
+            </trans-unit>
+
+            <trans-unit id="question.deleted_successfully">
+                <source>question_deleted_successfully</source>
+                <target> Pytanie usunięte </target>
+            </trans-unit>
+
+            <trans-unit id="message_category_contains_questions">
+                <source>message_category_contains_questions</source>
+                <target> Ta kategoria zawiera pytania </target>
+            </trans-unit>
+
+            <trans-unit id="answer_created_successfully">
+                <source>answer_created_successfully</source>
+                <target> Odpowiedź zapisana </target>
+            </trans-unit>
+
+            <trans-unit id="answer_updated_successfully">
+                <source>answer_updated_successfully</source>
+                <target> Odpowiedź zapisana </target>
+            </trans-unit>
+
+            <trans-unit id="answer.deleted_successfully">
+                <source>answer.deleted_successfully</source>
+                <target> Odpowiedź usunięta </target>
+            </trans-unit>
+
+            <trans-unit id="category.deleted_successfully">
+                <source>category.deleted_successfully</source>
+                <target> Kategoria została usunięta </target>
+            </trans-unit>
+
+            <trans-unit id="category_created_successfully">
+                <source>category_created_successfully</source>
+                <target> Kategoria została utworzona </target>
+            </trans-unit>
+
+            <trans-unit id="user_updated_successfully">
+                <source>user_updated_successfully</source>
+                <target> Dane użytkownika zostały zaktualizowane </target>
+            </trans-unit>
+
 
         </body>
     </file>

@@ -7,6 +7,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\Email;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AnswerRepository")
@@ -22,7 +25,18 @@ class Answer
     private $id;
 
     /**
-     * @ORM\Column(type="text")
+     * Name
+     * @var string
+     * @ORM\Column(
+     *     type="string",
+     *     length=64,
+     *     )
+     *  @Assert\Type(type="string")
+     *  @Assert\NotBlank
+     *  @Assert\Length(
+     *     min="3",
+     *     max="64",
+     * )
      */
     protected $content;
 
@@ -38,12 +52,34 @@ class Answer
     private $question;
 
     /**
-     * @ORM\Column(type="text")
+     * Name
+     * @var string
+     * @ORM\Column(
+     *     type="string",
+     *     length=64,
+     *     )
+     *  @Assert\Type(type="string")
+     *  @Assert\NotBlank
+     *  @Assert\Length(
+     *     min="3",
+     *     max="64",
+     * )
      */
     private $email;
 
     /**
-     * @ORM\Column(type="text")
+     * Name
+     * @var string
+     * @ORM\Column(
+     *     type="string",
+     *     length=64,
+     *     )
+     *  @Assert\Type(type="string")
+     *  @Assert\NotBlank
+     *  @Assert\Length(
+     *     min="3",
+     *     max="64",
+     * )
      */
     private $nick;
 
