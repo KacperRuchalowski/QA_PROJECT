@@ -11,10 +11,10 @@ use App\Form\AnswerType;
 use App\Form\QuestionType;
 use App\Repository\AnswerRepository;
 use App\Repository\QuestionRepository;
+use App\Service\QuestionService;
 use DateTime;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,12 +29,26 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuestionController extends AbstractController
 {
     /**
+     * Question service.
+     *
+     * @var \App\Service\QuestionService
+     */
+    private $questionService;
+
+    /**
+     * QuestionController constructor.
+     *
+     * @param \App\Service\QuestionService $questionService Question service
+     */
+    public function __construct(QuestionService $questionService)
+    {
+        $this->questionService = $questionService;
+    }
+
+    /**
      * Index action.
      *
-     * @param Request            $request            HTTP request
-     * @param QuestionRepository $questionRepository QuestionRepository
-     * @param PaginatorInterface $paginator          Paginator
-     *
+     * @param Request $request HTTP request
      * @return Response HTTP response
      *
      * @Route(
@@ -44,14 +58,10 @@ class QuestionController extends AbstractController
      *
      * )
      */
-    public function index(Request $request, QuestionRepository $questionRepository, PaginatorInterface $paginator): Response
+    public function index(Request $request): Response
     {
-        $pagination = $paginator->paginate(
-            $questionRepository->queryAll(),
-            $request->query->getInt('page', 1),
-            QuestionRepository::PAGINATOR_ITEMS_PER_PAGE
-        );
-
+        $page = $request->query->getInt('page', 1);
+        $pagination = $this->questionService->createPaginatedList($page);
         return $this->render(
             'question/index.html.twig',
             ['pagination' => $pagination]
@@ -61,6 +71,7 @@ class QuestionController extends AbstractController
     /**
      * @throws ORMException
      * @throws OptimisticLockException
+     *
      * @Route(
      *
      *     "/{id}",

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * AnswerEntity.
+ */
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -20,7 +24,7 @@ class Answer
     /**
      * @ORM\Column(type="text")
      */
-    private $content;
+    protected $content;
 
     /**
      * @ORM\Column(type="integer")
@@ -53,6 +57,9 @@ class Answer
         return $this->content;
     }
 
+    /**
+     * @return $this
+     */
     public function setContent(string $content): self
     {
         $this->content = $content;
@@ -65,6 +72,9 @@ class Answer
         return $this->is_best;
     }
 
+    /**
+     * @return $this
+     */
     public function setIsBest(int $is_best): self
     {
         $this->is_best = $is_best;
@@ -77,6 +87,9 @@ class Answer
         return $this->question;
     }
 
+    /**
+     * @return $this
+     */
     public function setQuestion(?Question $question): self
     {
         $this->question = $question;
@@ -89,6 +102,9 @@ class Answer
         return $this->email;
     }
 
+    /**
+     * @return $this
+     */
     public function setEmail(string $email): self
     {
         $this->email = $email;
@@ -101,6 +117,9 @@ class Answer
         return $this->nick;
     }
 
+    /**
+     * @return $this
+     */
     public function setNick(string $nick): self
     {
         $this->nick = $nick;

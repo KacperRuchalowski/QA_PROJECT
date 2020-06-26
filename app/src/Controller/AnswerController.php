@@ -9,7 +9,7 @@ use App\Entity\Answer;
 use App\Form\AnswerBestType;
 use App\Form\AnswerType;
 use App\Repository\AnswerRepository;
-use Knp\Component\Pager\PaginatorInterface;
+use App\Service\AnswerService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,12 +24,26 @@ use Symfony\Component\Routing\Annotation\Route;
 class AnswerController extends AbstractController
 {
     /**
+     * Answer service.
+     *
+     * @var \App\Service\AnswerService
+     */
+    private $answerService;
+
+    /**
+     * AnswerService constructor.
+     *
+     * @param \App\Service\AnswerService $answerService Answer service
+     */
+    public function __construct(AnswerService $answerService)
+    {
+        $this->answerService = $answerService;
+    }
+
+    /**
      * Index action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request          HTTP request
-     * @param \App\Repository\AnswerRepository          $answerRepository AnswerRepository
-     * @param \Knp\Component\Pager\PaginatorInterface   $paginator        Paginator
-     *
+     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
      * @Route(
@@ -39,13 +53,11 @@ class AnswerController extends AbstractController
      *
      * )
      */
-    public function index(Request $request, AnswerRepository $answerRepository, PaginatorInterface $paginator): Response
+    public function index(Request $request): Response
     {
-        $pagination = $paginator->paginate(
-            $answerRepository->findAll(),
-            $request->query->getInt('page', 1),
-            AnswerRepository::PAGINATOR_ITEMS_PER_PAGE
-        );
+        $page = $request->query->getInt('page');
+        $pagination = $this->answerService->createPaginatedList($page);
+        $request->query->getInt('page', 1);
 
         return $this->render(
             'Answer/index.html.twig',
@@ -54,11 +66,6 @@ class AnswerController extends AbstractController
     }
 
     /**
-     * @param AnswerRepository $answerRepository
-     * @param int              $id
-     *
-     * @return Response
-     *
      * @Route(
      *
      *     "/{id}",
@@ -66,7 +73,7 @@ class AnswerController extends AbstractController
      *     name="answer_show",
      *     requirements={"id": "[1-9]\d*"},
      * )
-     **/
+     */
     public function show(Answer $answer): Response
     {
         return $this->render(

@@ -8,12 +8,13 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
-use Knp\Component\Pager\PaginatorInterface;
+use App\Service\CategoryService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 /**
  * Class CategoryController.
@@ -22,6 +23,23 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class CategoryController extends AbstractController
 {
+/**
+* Category service.
+*
+* @var \App\Service\CategoryService
+     */
+    private $categoryService;
+
+    /**
+     * CategoryController constructor.
+     *
+     * @param \App\Service\CategoryService $categoryService Category service
+     */
+    public function __construct(CategoryService $categoryService)
+    {
+        $this->categoryService = $categoryService;
+    }
+
     /**
      * Index action.
      *
@@ -38,14 +56,10 @@ class CategoryController extends AbstractController
      *
      * )
      */
-    public function index(Request $request, CategoryRepository $categoryRepository, PaginatorInterface $paginator): Response
+    public function index(Request $request): Response
     {
-        $pagination = $paginator->paginate(
-            $categoryRepository->findAll(),
-            $request->query->getInt('page', 1),
-            CategoryRepository::PAGINATOR_ITEMS_PER_PAGE
-        );
-
+        $page = $request->query->getInt('page', 1);
+        $pagination = $this->categoryService->createPaginatedList($page);
         return $this->render(
             'category/index.html.twig',
             ['pagination' => $pagination]
@@ -53,9 +67,6 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @param CategoryRepository $categoryRepository
-     * @param int                $id
-     *
      * @Route(
      *
      *     "/{id}",
@@ -63,7 +74,7 @@ class CategoryController extends AbstractController
      *     name="category_show",
      *     requirements={"id": "[1-9]\d*"},
      * )
-     **/
+     */
     public function show(Category $category): Response
     {
         return $this->render(
@@ -89,14 +100,14 @@ class CategoryController extends AbstractController
      *     name="category_create",
      * )
      */
-    public function create(Request $request, CategoryRepository $categoryRepository): Response
+    public function create(Request $request): Response
     {
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $categoryRepository->save($category);
+            $this->categoryService->save($category);
 
             $this->addFlash('success', 'message_created_successfully');
 

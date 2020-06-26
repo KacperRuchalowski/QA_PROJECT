@@ -5,12 +5,13 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Form\Extension\Validator\Constraints;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  * @ORM\Table(name="categories")
+ *
+ * @UniqueEntity(fields={"name"})
  */
 class Category
 {
@@ -22,7 +23,18 @@ class Category
     private $id;
 
     /**
-     * @ORM\Column(type="text")
+     * Name
+     * @var string
+     * @ORM\Column(
+     *     type="string",
+     *     length=64,
+     *     )
+     *  @Assert\Type(type="string")
+     *  @Assert\NotBlank
+     *  @Assert\Length(
+     *     min="3",
+     *     max="64",
+     * )
      */
     private $name;
 

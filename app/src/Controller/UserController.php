@@ -8,7 +8,9 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
-use Knp\Component\Pager\PaginatorInterface;
+use App\Service\UserService;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,11 +25,26 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UserController extends AbstractController
 {
     /**
+     * User service.
+     *
+     * @var \App\Service\UserService
+     */
+    private $userService;
+
+    /**
+     * UserController constructor.
+     *
+     * @param \App\Service\QuestionService $userService User service
+     */
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+    /**
      * Index action.
      *
      * @param Request            $request        HTTP request
      * @param UserRepository     $userRepository UserRepository
-     * @param PaginatorInterface $paginator      Paginator
      *
      * @return Response HTTP response
      *
@@ -38,14 +55,11 @@ class UserController extends AbstractController
      *
      * )
      */
-    public function index(Request $request, UserRepository $userRepository, PaginatorInterface $paginator): Response
+    public function index(Request $request): Response
     {
-        $pagination = $paginator->paginate(
-            $userRepository->findAll(),
-            $request->query->getInt('page', 1),
-            UserRepository::PAGINATOR_ITEMS_PER_PAGE
-        );
-
+             $page = $request->query->getInt('page', 1);
+             $pagination = $this->userService->createPaginatedList($page);
+             $request->query->getInt('page', 1);
         return $this->render(
             'user/index.html.twig',
             ['pagination' => $pagination]
@@ -72,15 +86,16 @@ class UserController extends AbstractController
     /**
      * Edit action.
      *
-     * @param Request                        $request         HTTP request
-     * @param \App\Entity\User               $user            User entity
-     * @param \App\Repository\UserRepository $userRepository  User repository
-     * @param UserPasswordEncoderInterface   $passwordEncoder PasswordEncoder
+     * @param Request                      $request         HTTP request
+     * @param User                         $user            User entity
+     * @param UserRepository               $userRepository  User repository
+     * @param UserPasswordEncoderInterface $passwordEncoder PasswordEncoder
      *
      * @return Response HTTP response
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws ORMException
+     * @throws OptimisticLockException
+     *
      * @Route(
      *     "/{id}/edit",
      *     methods={"GET", "PUT"},
