@@ -45,6 +45,7 @@ class UserController extends AbstractController
      * Index action.
      *
      * @param Request $request HTTP request
+     *
      * @return Response HTTP response
      *
      * @Route(
@@ -75,6 +76,7 @@ class UserController extends AbstractController
      *     requirements={"id": "[1-9]\d*"},
      * )
      * @param User $user
+     *
      * @return Response
      */
     public function show(User $user): Response

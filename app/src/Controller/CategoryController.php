@@ -43,6 +43,7 @@ class CategoryController extends AbstractController
      * Index action.
      *
      * @param Request $request HTTP request
+     *
      * @return Response HTTP response
      *
      * @Route(
@@ -72,6 +73,7 @@ class CategoryController extends AbstractController
      *     requirements={"id": "[1-9]\d*"},
      * )
      * @param Category $category
+     *
      * @return Response
      */
     public function show(Category $category): Response
@@ -86,10 +88,12 @@ class CategoryController extends AbstractController
      * Create action.
      *
      * @param Request $request HTTP request
+     *
      * @return Response HTTP response
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
+     *
      * @Route(
      *     "/create",
      *     methods={"GET", "POST"},
@@ -119,9 +123,9 @@ class CategoryController extends AbstractController
     /**
      * Edit action.
      *
-     * @param Request $request            HTTP request
-     * @param \App\Entity\Category                      $category           Category entity
-     * @param CategoryRepository $categoryRepository Category repository
+     * @param Request              $request            HTTP request
+     * @param \App\Entity\Category $category           Category entity
+     * @param CategoryRepository   $categoryRepository Category repository
      *
      * @return Response HTTP response
      *
@@ -160,9 +164,9 @@ class CategoryController extends AbstractController
     /**
      * Delete action.
      *
-     * @param Request $request            HTTP request
-     * @param \App\Entity\Category                      $category           Category entity
-     * @param CategoryRepository $categoryRepository Category repository
+     * @param Request              $request            HTTP request
+     * @param \App\Entity\Category $category           Category entity
+     * @param CategoryRepository   $categoryRepository Category repository
      *
      * @return Response HTTP response
      *

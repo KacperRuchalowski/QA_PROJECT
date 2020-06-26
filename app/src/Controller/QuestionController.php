@@ -71,12 +71,15 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @param Request $request
-     * @param Question $question
+     * @param Request          $request
+     * @param Question         $question
      * @param AnswerRepository $answerRepository
+     *
      * @return Response
+     *
      * @throws ORMException
      * @throws OptimisticLockException
+     *
      * @Route(
      *
      *     "/{id}",

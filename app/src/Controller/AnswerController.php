@@ -75,6 +75,7 @@ class AnswerController extends AbstractController
      *     requirements={"id": "[1-9]\d*"},
      * )
      * @param  Answer $answer
+     *
      * @return Response
      */
     public function show(Answer $answer): Response

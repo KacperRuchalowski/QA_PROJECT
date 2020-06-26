@@ -76,6 +76,7 @@ class Category
 
     /**
      * @param string $name
+     *
      * @return $this
      */
     public function setName(string $name): self
@@ -92,5 +93,4 @@ class Category
     {
         return $this->questions;
     }
-
 }

@@ -133,6 +133,7 @@ class Question
 
     /**
      * @param Category|null $category
+     *
      * @return $this
      */
     public function setCategory(?Category $category): self
@@ -152,6 +153,7 @@ class Question
 
     /**
      * @param Answer $answer
+     *
      * @return $this
      */
     public function addAnswer(Answer $answer): self
@@ -166,6 +168,7 @@ class Question
 
     /**
      * @param Answer $answer
+     *
      * @return $this
      */
     public function removeAnswer(Answer $answer): self
@@ -191,6 +194,7 @@ class Question
 
     /**
      * @param \DateTimeInterface $createdAt
+     *
      * @return $this
      */
     public function setCreatedAt(\DateTimeInterface $createdAt): self

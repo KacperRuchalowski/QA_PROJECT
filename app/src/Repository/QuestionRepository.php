@@ -91,5 +91,4 @@ class QuestionRepository extends ServiceEntityRepository
     {
         return $queryBuilder ?? $this->createQueryBuilder('question');
     }
-
 }
