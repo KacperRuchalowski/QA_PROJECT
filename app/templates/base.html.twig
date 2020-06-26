@@ -16,8 +16,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" href="{{ url('question_index') }}">Questions</a>
-            <a class="nav-item nav-link" href="{{ url('category_index') }}">Categories</a>
+            <a class="nav-item nav-link" href="{{ url('question_index') }}">{{ 'menu_questions'|trans }}</a>
+            <a class="nav-item nav-link" href="{{ url('category_index') }}">{{ 'menu_categories'|trans }}</a>
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
             <a class="nav-item nav-link" href="{{ url('user_index') }}">Users</a>
             {% endif %}
@@ -28,13 +28,13 @@
 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
     <div>{{ app.user.email }}</div>
     <div>
-        <a href="{{ url('app_logout') }}">{{ 'action_logout'|trans }}</a>
+        <a class="float-right btn btn-secondary float-md-right" href="{{ url('app_logout') }}">{{ 'action_logout'|trans }}</a>
 
 
     </div>
 {% else %}
     <div>
-        <a  href="{{ url('app_login') }}">{{ 'action_login'|trans }} </a>
+        <a class="float-right btn btn-success float-md-right" href="{{ url('app_login') }}">{{ 'action_login'|trans }} </a>
     </div>
 {% endif %}
 

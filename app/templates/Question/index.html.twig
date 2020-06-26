@@ -9,11 +9,11 @@
 
 
 
-    <h1>{{ 'title_question_list'|trans }}</h1>
+    <h1 class="display-4 d-flex justify-content-center">{{ 'title_question_list'|trans }}</h1>
 
     {% if is_granted ('ROLE_ADMIN') %}
-        <a href="{{ url('question_create') }}" title="{{ 'label_create_question'|trans }}">
-            {{ 'label_create_question'|trans }}
+        <a class="btn btn-outline-success" href="{{ url('question_create') }}" title="{{ 'label_question_create'|trans }}">
+            {{ 'label_question_create'|trans }}
         </a>
     {% endif %}
 
@@ -21,11 +21,11 @@
 
     {% if pagination is defined and pagination.items|length %}
 
-
+        <div class=".table-responsive">
         <table class="table table-striped">
-            <thead>
+            <thead class="thead-dark">
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'label_Created_at:'|trans, 'question.createdAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_Created_at'|trans, 'question.createdAt') }}</th>
                 <th>{{ 'label_question_title'|trans }}</th>
                 <th>{{ 'label_question_content'|trans }}</th>
                 <th>{{ 'label_question_category'|trans }}</th>
@@ -41,16 +41,16 @@
                     <td>{{ question.category.name }}</td>
 
                     <td>
-                        <a href="{{ url('question_show', {id: question.id}) }}" title="{{ 'label_question_show'|trans }}">
+                        <a class="btn btn-info" href="{{ url('question_show', {id: question.id}) }}" title="{{ 'label_question_show'|trans }}">
                             {{ 'label_question_show'|trans }}
                         </a>
                         {% if is_granted ('ROLE_ADMIN') %}
-                        <a href="{{ url('question_edit', {id: question.id}) }}" title="{{ 'label_question_edit'|trans }}">
+                        <a class="btn btn-warning" href="{{ url('question_edit', {id: question.id}) }}" title="{{ 'label_question_edit'|trans }}">
                             {{ 'label_question_edit'|trans }}
                         </a>
 
                         {% if not question.answers|length %}
-                        <a href="{{ url('question_delete', {id: question.id}) }}" title="{{ 'label_question_delete'|trans }}">
+                        <a class="btn btn-danger" href="{{ url('question_delete', {id: question.id}) }}" title="{{ 'label_question_delete'|trans }}">
                             {{ 'label_question_delete'|trans }}
                         </a>
 
@@ -62,6 +62,7 @@
             {% endfor %}
             </tbody>
         </table>
+        </div>
 
         <div class="navigation text-center">
             {{ knp_pagination_render(pagination) }}

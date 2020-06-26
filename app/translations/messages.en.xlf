@@ -2,46 +2,264 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
-            <trans-unit id="Question List">
-                <source>Question List</source>
-                <target>List of Questions</target>
+
+            <trans-unit id="title_answer_edit">
+                <source>title_answer_edit</source>
+                <target>Edit this answer</target>
             </trans-unit>
-            <trans-unit id="question.id">
-                <source>ID</source>
-                <target>ID</target>
+
+            <trans-unit id="action_save">
+                <source>action_save</source>
+                <target>Save</target>
             </trans-unit>
-            <trans-unit id="question.TitleQuestion">
-                <source>Title</source>
+
+            <trans-unit id="action_back_to_list">
+                <source>action_back_to_list</source>
+                <target>Back</target>
+            </trans-unit>
+
+            <trans-unit id="title_answer_create">
+                <source>title_answer_create</source>
+                <target>Create new answer</target>
+            </trans-unit>
+
+            <trans-unit id="title_category_create">
+                <source>title_category_create</source>
+                <target>Create new category</target>
+            </trans-unit>
+
+            <trans-unit id="title_answer_delete">
+                <source>title_answer_delete</source>
+                <target>Delete this answer</target>
+            </trans-unit>
+
+            <trans-unit id="label_answer_list">
+                <source>label_answer_list</source>
+                <target>List of answers</target>
+            </trans-unit>
+
+            <trans-unit id="message_empty_list">
+                <source>message_empty_list</source>
+                <target>This list is empty</target>
+            </trans-unit>
+
+            <trans-unit id="action_logout">
+                <source>action_logout</source>
+                <target>Logout</target>
+            </trans-unit>
+
+            <trans-unit id="action_login">
+                <source>action_login</source>
+                <target>Sign in</target>
+            </trans-unit>
+
+
+
+            <trans-unit id="title_category_list">
+                <source>title_category_list</source>
+                <target>Categories</target>
+            </trans-unit>
+
+            <trans-unit id="label_create_category">
+                <source>label_create_category</source>
+                <target>Create category</target>
+            </trans-unit>
+
+            <trans-unit id="label_category_title">
+                <source>label_category_title</source>
                 <target>Title</target>
             </trans-unit>
-            <trans-unit id="question.Content">
-                <source>Content</source>
-                <target>Content</target>
-            </trans-unit>
-            <trans-unit id="Category">
-                <source>Category</source>
-                <target>Category</target>
-            </trans-unit>
-            <trans-unit id="Expand">
-                <source>Expand</source>
-                <target>Expand</target>
-            </trans-unit>
+
             <trans-unit id="Actions">
                 <source>Actions</source>
                 <target>Actions</target>
             </trans-unit>
-            <trans-unit id="Back">
-                <source>Back</source>
+
+            <trans-unit id="label_category_show">
+                <source>label_category_show</source>
+                <target>Show question</target>
+            </trans-unit>
+
+            <trans-unit id="title_category_show">
+                <source>title_category_show</source>
+                <target>Show details</target>
+            </trans-unit>
+
+            <trans-unit id="label_category_edit">
+                <source>label_category_edit</source>
+                <target>Edit category</target>
+            </trans-unit>
+
+            <trans-unit id="label_category_delete">
+                <source>label_category_delete</source>
+                <target>Delete category</target>
+            </trans-unit>
+
+            <trans-unit id="title_category_delete">
+                <source>title_category_delete</source>
+                <target>Category Removal</target>
+            </trans-unit>
+
+            <trans-unit id="title_category_edit">
+                <source>title_category_edit</source>
+                <target>Category Edit Mode</target>
+            </trans-unit>
+
+            <trans-unit id="title_category_details">
+                <source>title_category_details</source>
+                <target>Category details</target>
+            </trans-unit>
+
+            <trans-unit id="label_question_title">
+                <source>label_question_title</source>
+                <target>Title</target>
+            </trans-unit>
+
+            <trans-unit id="label_category_back">
+                <source>label_category_back</source>
                 <target>Back</target>
             </trans-unit>
-            <trans-unit id="Question Details">
-                <source>Details</source>
-                <target>Details</target>
+
+            <trans-unit id="label_question_create">
+                <source>label_question_create</source>
+                <target>Create new question</target>
             </trans-unit>
+
+            <trans-unit id="title_question_create">
+                <source>title_question_create</source>
+                <target>Question creation</target>
+            </trans-unit>
+
+            <trans-unit id="title_question_edit">
+                <source>title_question_edit</source>
+                <target>Question Edit Mode</target>
+            </trans-unit>
+
+            <trans-unit id="title_question_list">
+                <source>title_question_list</source>
+                <target>Question List</target>
+            </trans-unit>
+
+            <trans-unit id="label_Created_at">
+                <source>label_Created_at</source>
+                <target> Date of creation </target>
+            </trans-unit>
+
+            <trans-unit id="label_question_content">
+                <source>label_question_content</source>
+                <target> Question </target>
+            </trans-unit>
+
+            <trans-unit id="label_question_category">
+                <source>label_question_category</source>
+                <target> Category </target>
+            </trans-unit>
+
+            <trans-unit id="label_question_show">
+                <source>label_question_show</source>
+                <target>Show Question</target>
+            </trans-unit>
+
+            <trans-unit id="label_question_edit">
+                <source>label_question_edit</source>
+                <target>Edit</target>
+            </trans-unit>
+
+            <trans-unit id="label_question_delete">
+                <source>label_question_delete</source>
+                <target>Delete</target>
+            </trans-unit>
+
+            <trans-unit id="label_question_details">
+                <source>label_question_details</source>
+                <target> Question </target>
+            </trans-unit>
+
+            <trans-unit id="label_answer_edit">
+                <source>label_answer_edit</source>
+                <target> Edit answer </target>
+            </trans-unit>
+
+            <trans-unit id="label_answer_delete">
+                <source>label_answer_delete</source>
+                <target> Remove </target>
+            </trans-unit>
+
+            <trans-unit id="label_answer_isBest">
+                <source>label_answer_isBest</source>
+                <target> Mark as best </target>
+            </trans-unit>
+
+            <trans-unit id="save">
+                <source>save</source>
+                <target> Save </target>
+            </trans-unit>
+
+            <trans-unit id="Back">
+                <source>Back</source>
+                <target> Back </target>
+            </trans-unit>
+
             <trans-unit id="message_item_not_found">
-                <source>Not found</source>
-                <target>Not found</target>
+                <source>message_item_not_found</source>
+                <target> Item not found </target>
             </trans-unit>
+
+            <trans-unit id="title_user_delete">
+                <source>title_user_delete</source>
+                <target> Delete user </target>
+            </trans-unit>
+
+            <trans-unit id="title_user_edit">
+                <source>title_user_edit</source>
+                <target> Edit Mode </target>
+            </trans-unit>
+
+            <trans-unit id="title_user_list">
+                <source>title_user_list</source>
+                <target> Users </target>
+            </trans-unit>
+
+            <trans-unit id="label_user_email">
+                <source>label_user_email</source>
+                <target> Login </target>
+            </trans-unit>
+
+
+            <trans-unit id="label_user_edit">
+                <source>label_user_edit</source>
+                <target> Edit </target>
+            </trans-unit>
+
+
+            <trans-unit id="menu_questions">
+                <source>menu_questions</source>
+                <target> Questions </target>
+            </trans-unit>
+
+            <trans-unit id="menu_categories">
+                <source>menu_categories</source>
+                <target> Categories </target>
+            </trans-unit>
+
+            <trans-unit id="please_sign">
+                <source>please_sign</source>
+                <target> Sign in </target>
+            </trans-unit>
+
+            <trans-unit id="password_log">
+                <source>password_log</source>
+                <target> Password </target>
+            </trans-unit>
+
+            <trans-unit id="sign_in_log">
+                <source>sign_in_log</source>
+                <target> Sign In </target>
+            </trans-unit>
+
+
+
+
         </body>
     </file>
 </xliff>

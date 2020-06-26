@@ -135,6 +135,9 @@
       <path value="$PROJECT_DIR$/app/vendor/knplabs/knp-components" />
       <path value="$PROJECT_DIR$/app/vendor/symfony/polyfill-php80" />
       <path value="$PROJECT_DIR$/app/vendor/doctrine/sql-formatter" />
+      <path value="$PROJECT_DIR$/app/vendor/behat/transliterator" />
+      <path value="$PROJECT_DIR$/app/vendor/stof/doctrine-extensions-bundle" />
+      <path value="$PROJECT_DIR$/app/vendor/gedmo/doctrine-extensions" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.4" />

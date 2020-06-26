@@ -9,10 +9,10 @@
 
 
 
-    <h1>{{ 'title_category_list'|trans }}</h1>
+    <h1 class="display-4 d-flex justify-content-center">{{ 'title_category_list'|trans }}</h1>
 
     {% if is_granted ('ROLE_ADMIN') %}
-    <a href="{{ url('category_create') }}" title="{{ 'label_create_category '|trans }}">
+    <a class="btn btn-outline-success" href="{{ url('category_create') }}" title="{{ 'label_create_category '|trans }}">
         {{ 'label_create_category'|trans }}
     </a>
     {% endif %}
@@ -22,7 +22,7 @@
 
 
         <table class="table table-striped">
-            <thead>
+            <thead class="thead-dark">
             <tr>
                 <th>{{ 'label_category_title'|trans }}</th>
                 <th>{{ 'Actions'|trans }}</th>
@@ -33,16 +33,16 @@
                 <tr>
                     <td>{{ category.name }}</td>
                     <td>
-                        <a href="{{ url('category_show', {id: category.id}) }}" title="{{ 'label_category_show'|trans }}">
-                            {{ 'label_category_show '|trans }}
+                        <a class="btn btn-info" href="{{ url('category_show', {id: category.id}) }}" title="{{ 'title_category_show'|trans }}">
+                            {{ 'title_category_show'|trans }}
                         </a>
                         {% if is_granted ('ROLE_ADMIN') %}
-                        <a href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'label_category_edit'|trans }}">
+                        <a class="btn btn-warning" href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'label_category_edit'|trans }}">
                             {{ 'label_category_edit'|trans }}
                         </a>
 
                         {% if not category.questions|length %}
-                        <a href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'label_category_delete'|trans }}">
+                        <a class="btn btn-danger" href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'label_category_delete'|trans }}">
                             {{ 'label_category_delete'|trans }}
                         </a>
                         {% endif %}

@@ -5,41 +5,42 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'label_question_details'|trans({'%id%': question.id|default('')}) }}</h1>
+    <h1 class="display-4 d-flex justify-content-center">{{ 'label_question_details'|trans({'%id%': question.id|default('')}) }}</h1>
+
     {% if question is defined and question|length %}
+        <div class="card distance" style="width: 50%;">
         <dl class="dl-horizontal">
-            <dt>{{ 'label_question_title'|trans }}</dt>
-            <dd>{{ question.TitleQuestion|trans }}</dd>
-            <dt>{{ 'label_question_content'|trans }}</dt>
-            <dd>{{ question.Content }}</dd>
-            <dt>{{ 'label_question_category'|trans }}</dt>
-            <dd>{{  question.category.name }}</dd>
+            <dd class="card-title">{{ question.TitleQuestion|trans }}</dd>
+            <dd class="card-text display-4">{{ question.Content }}</dd>
         </dl>
+        </div>
+
+
 
         {% for answers in question.answers %}
-
-        {% if answers.isBest == 1 %}
-
+            {% if answers.isBest == 1 %}
+            <div class="card"  style="width: 50%;">
+                <div class="card-header">
+                    {{ 'label_best_answer_text'|trans }}
+                </div>
+            <div class="card-body alert alert-success">
             {{ answers.content }}
-
+            </div>
+            </div>
             {% endif %}
         {% endfor %}
 
 
 
         {% if question is defined and question|length %}
-            <div >
+            <div>
                 {% for answers in question.answers %}
                     <div>
 
 
-
-
-
-
                         <div class="card-body">
-                            <h5 class="card-title">{{ answers.content }}</h5>
-                            <p class="card-title"> {{ answers.nick }}
+                            <h5 class="card-text">{{ answers.content }}</h5>
+                            <p class="card-title blockquote-footer"> {{ answers.nick }}
                                 {{ answers.email }}
                             </p>
                             <h1 class="card-title"></h1>
@@ -47,15 +48,15 @@
                             {% if is_granted ('ROLE_ADMIN') %}
 
 
-                            <a href="{{ url('answer_edit', {id: answers.id}) }}" title="{{ 'label_answer_edit'|trans }}">
+                            <a class="btn btn-info" href="{{ url('answer_edit', {id: answers.id}) }}" title="{{ 'label_answer_edit'|trans }}">
                                 {{ 'label_answer_edit'|trans }}
                             </a>
 
-                            <a href="{{ url('answer_delete', {id: answers.id}) }}" title="{{ 'label_answer_delete'|trans }}">
+                            <a class="btn btn-danger" href="{{ url('answer_delete', {id: answers.id}) }}" title="{{ 'label_answer_delete'|trans }}">
                                 {{ 'label_answer_delete'|trans }}
                             </a>
 
-                            <a href="{{ url('answer_best', {id: answers.id}) }}" title="{{ 'label_answer_isBest'|trans }}">
+                            <a class="btn btn-success" href="{{ url('answer_best', {id: answers.id}) }}" title="{{ 'label_answer_isBest'|trans }}">
                                 {{ 'label_answer_isBest'|trans }}
                             </a>
 
@@ -75,11 +76,16 @@
         {% endif %}
 
         <p>
-            <div>
+
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseForm" aria-expanded="false" aria-controls="collapseForm">
+               {{ 'label_answer_button'|trans }}
+            </button>
+
+            <div id="collapseForm">
                 {{ form_start(form) }}
                 {{ form_widget(form) }}
 
-                <div  class="form-group row float-sm-right">
+                <div  class="btn btn-info row float-sm-right">
                     <input type="submit" value="{{ 'save'|trans }}" class="btn btn-light">
                 </div>
 
@@ -88,12 +94,10 @@
 
 
 
-            <a href="{{ url('question_index') }}" title="{{ 'Back'|trans }}">
+            <a class="btn btn-info" href="{{ url('question_index') }}" title="{{ 'Back'|trans }}">
                 {{ 'Back'|trans }}
             </a>
 
-
-        </p>
 
     {% else %}
         <p>

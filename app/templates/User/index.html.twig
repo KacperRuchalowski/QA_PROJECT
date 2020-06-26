@@ -9,14 +9,14 @@
 
 
 
-    <h1>{{ 'title_user_list'|trans }}</h1>
+    <h1 class="display-4 d-flex justify-content-center">{{ 'title_user_list'|trans }}</h1>
 
 
     {% if pagination is defined and pagination.items|length %}
 
 
         <table class="table table-striped">
-            <thead>
+            <thead class="thead-dark">
             <tr>
                 <th>{{ 'label_user_email'|trans }}</th>
                 <th>{{ 'Actions'|trans }}</th>
@@ -27,7 +27,7 @@
                 <tr>
                     <td>{{ user.email }}</td>
                     <td>
-                            <a href="{{ url('user_edit', {id: user.id}) }}" title="{{ 'label_user_edit'|trans }}">
+                            <a class="btn btn-warning" href="{{ url('user_edit', {id: user.id}) }}" title="{{ 'label_user_edit'|trans }}">
                                 {{ 'label_user_edit'|trans }}
                             </a>
 

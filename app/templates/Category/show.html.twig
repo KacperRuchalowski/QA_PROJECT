@@ -5,27 +5,30 @@
 {% endblock %}
 
 {% block body %}
-<h1>{{ 'title_category_details'|trans({'%id%': category.id|default('')}) }}</h1>
+<h1 class="display-4 d-flex justify-content-center">{{ 'title_category_details'|trans({'%id%': category.id|default('')}) }}</h1>
 {% if category is defined and category|length %}
 
-<dl class="dl-horizontal">
-    <dt>{{ 'label_category_title'|trans }}</dt>
-    <dd>{{ category.name|trans }}</dd>
-    <dt>{{ 'label_question_title'|trans }}</dt>
+<dl>
+    <dt class="display-4">{{ 'label_question_title'|trans }}</dt>
+
+    <div>
     {% for question in category.questions %}
 
-    <dd> {{ question.titleQuestion }}</dd>
-        <a href="{{ url('question_show', {id: question.id}) }}" title="{{ 'label_category_show'|trans }}">
+        <div class="card-body">
+            <h5 class="card-text">{{ question.titleQuestion }}</h5>
+        </div>
+        <a  class="btn btn-info" href="{{ url('question_show', {id: question.id}) }}" title="{{ 'label_category_show'|trans }}">
             {{ 'label_category_show'|trans }}
         </a>
 
     {% endfor %}
+    </div>
 </dl>
 
 {% endif %}
 
     <p>
-        <a href="{{ url('category_index') }}" title="{{ 'label_category_back'|trans }}">
+        <a class="btn btn-info" href="{{ url('category_index') }}" title="{{ 'label_category_back'|trans }}">
             {{ 'label_category_back'|trans }}
         </a>
     </p>
