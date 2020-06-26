@@ -240,6 +240,11 @@
                 <target> Kategorie </target>
             </trans-unit>
 
+            <trans-unit id="menu_users">
+                <source>menu_users</source>
+                <target> Użytkownicy </target>
+            </trans-unit>
+
             <trans-unit id="please_sign">
                 <source>please_sign</source>
                 <target> Zaloguj się </target>
@@ -253,6 +258,17 @@
             <trans-unit id="sign_in_log">
                 <source>sign_in_log</source>
                 <target> Dalej </target>
+            </trans-unit>
+
+
+            <trans-unit id="label_best_answer_text">
+                <source>label_best_answer_text</source>
+                <target> Najlepsza odpowiedź </target>
+            </trans-unit>
+
+            <trans-unit id="label_answer_button">
+                <source>label_answer_button</source>
+                <target> Dodaj odpowiedź </target>
             </trans-unit>
 
         </body>

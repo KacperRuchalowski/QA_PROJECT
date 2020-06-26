@@ -19,7 +19,7 @@
             <a class="nav-item nav-link" href="{{ url('question_index') }}">{{ 'menu_questions'|trans }}</a>
             <a class="nav-item nav-link" href="{{ url('category_index') }}">{{ 'menu_categories'|trans }}</a>
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-            <a class="nav-item nav-link" href="{{ url('user_index') }}">Users</a>
+            <a class="nav-item nav-link" href="{{ url('user_index') }}">{{ 'menu_users'|trans }}</a>
             {% endif %}
         </div>
     </div>

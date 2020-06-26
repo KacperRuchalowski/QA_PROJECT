@@ -242,6 +242,11 @@
                 <target> Categories </target>
             </trans-unit>
 
+            <trans-unit id="menu_users">
+                <source>menu_users</source>
+                <target> Users </target>
+            </trans-unit>
+
             <trans-unit id="please_sign">
                 <source>please_sign</source>
                 <target> Sign in </target>
@@ -256,6 +261,17 @@
                 <source>sign_in_log</source>
                 <target> Sign In </target>
             </trans-unit>
+
+            <trans-unit id="label_best_answer_text">
+                <source>label_best_answer_text</source>
+                <target> Best Answer </target>
+            </trans-unit>
+
+            <trans-unit id="label_answer_button">
+                <source>label_answer_button</source>
+                <target> Add Answer </target>
+            </trans-unit>
+
 
 
 
