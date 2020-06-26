@@ -32,8 +32,8 @@ class AnswerService
     /**
      * AnswerService constructor.
      *
-     * @param \App\Repository\AnswerRepository      $answerRepository Answer repository
-     * @param \Knp\Component\Pager\PaginatorInterface $paginator          Paginator
+     * @param \App\Repository\AnswerRepository        $answerRepository Answer repository
+     * @param \Knp\Component\Pager\PaginatorInterface $paginator        Paginator
      */
     public function __construct(AnswerRepository $answerRepository, PaginatorInterface $paginator)
     {

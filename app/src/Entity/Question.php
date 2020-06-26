@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Question entity.
+ */
+
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -24,6 +28,7 @@ class Question
     /**
      * Name
      * @var string
+     *
      * @ORM\Column(
      *     type="string",
      *     length=45,
@@ -40,6 +45,7 @@ class Question
     /**
      * Name
      * @var string
+     *
      * @ORM\Column(
      *     type="string",
      *     length=255,
@@ -69,41 +75,66 @@ class Question
      */
     private $createdAt;
 
+    /**
+     * Question constructor.
+     */
     public function __construct()
     {
         $this->answers = new ArrayCollection();
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getTitleQuestion(): ?string
     {
         return $this->title_question;
     }
 
+    /**
+     * @param string $title_question
+     */
     public function setTitleQuestion(string $title_question): void
     {
         $this->title_question = $title_question;
     }
 
+    /**
+     * @return string|null
+     */
     public function getContent(): ?string
     {
         return $this->content;
     }
 
+    /**
+     * @param string $content
+     */
     public function setContent(string $content): void
     {
         $this->content = $content;
     }
 
+    /**
+     * @return Category|null
+     */
     public function getCategory(): ?Category
     {
         return $this->category;
     }
 
+    /**
+     * @param Category|null $category
+     * @return $this
+     */
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
@@ -119,6 +150,10 @@ class Question
         return $this->answers;
     }
 
+    /**
+     * @param Answer $answer
+     * @return $this
+     */
     public function addAnswer(Answer $answer): self
     {
         if (!$this->answers->contains($answer)) {
@@ -129,6 +164,10 @@ class Question
         return $this;
     }
 
+    /**
+     * @param Answer $answer
+     * @return $this
+     */
     public function removeAnswer(Answer $answer): self
     {
         if ($this->answers->contains($answer)) {
@@ -142,11 +181,18 @@ class Question
         return $this;
     }
 
+    /**
+     * @return \DateTimeInterface|null
+     */
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
 
+    /**
+     * @param \DateTimeInterface $createdAt
+     * @return $this
+     */
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;

@@ -49,6 +49,7 @@ class QuestionController extends AbstractController
      * Index action.
      *
      * @param Request $request HTTP request
+     *
      * @return Response HTTP response
      *
      * @Route(
@@ -62,6 +63,7 @@ class QuestionController extends AbstractController
     {
         $page = $request->query->getInt('page', 1);
         $pagination = $this->questionService->createPaginatedList($page);
+
         return $this->render(
             'question/index.html.twig',
             ['pagination' => $pagination]
@@ -69,9 +71,12 @@ class QuestionController extends AbstractController
     }
 
     /**
+     * @param Request $request
+     * @param Question $question
+     * @param AnswerRepository $answerRepository
+     * @return Response
      * @throws ORMException
      * @throws OptimisticLockException
-     *
      * @Route(
      *
      *     "/{id}",

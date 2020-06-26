@@ -59,6 +59,7 @@ class User implements UserInterface
     /**
      * Name
      * @var string
+     *
      * @ORM\Column(
      *     type="string",
      *     length=64,
@@ -82,6 +83,7 @@ class User implements UserInterface
     /**
      * The hashed password
      * @var string
+     *
      * @ORM\Column(
      *     type="string",
      *     length=20,

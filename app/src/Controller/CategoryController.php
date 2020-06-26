@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 /**
  * Class CategoryController.
  *
@@ -43,11 +42,8 @@ class CategoryController extends AbstractController
     /**
      * Index action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request            HTTP request
-     * @param \App\Repository\QuestionRepository        $categoryRepository CategoryRepository
-     * @param \Knp\Component\Pager\PaginatorInterface   $paginator          Paginator
-     *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     * @param Request $request HTTP request
+     * @return Response HTTP response
      *
      * @Route(
      *     "/",
@@ -60,6 +56,7 @@ class CategoryController extends AbstractController
     {
         $page = $request->query->getInt('page', 1);
         $pagination = $this->categoryService->createPaginatedList($page);
+
         return $this->render(
             'category/index.html.twig',
             ['pagination' => $pagination]
@@ -74,6 +71,8 @@ class CategoryController extends AbstractController
      *     name="category_show",
      *     requirements={"id": "[1-9]\d*"},
      * )
+     * @param Category $category
+     * @return Response
      */
     public function show(Category $category): Response
     {
@@ -86,14 +85,11 @@ class CategoryController extends AbstractController
     /**
      * Create action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request            HTTP request
-     * @param \App\Repository\CategoryRepository        $categoryRepository Category repository
-     *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     * @param Request $request HTTP request
+     * @return Response HTTP response
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
-     *
      * @Route(
      *     "/create",
      *     methods={"GET", "POST"},
@@ -123,11 +119,11 @@ class CategoryController extends AbstractController
     /**
      * Edit action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request            HTTP request
+     * @param Request $request            HTTP request
      * @param \App\Entity\Category                      $category           Category entity
-     * @param \App\Repository\CategoryRepository        $categoryRepository Category repository
+     * @param CategoryRepository $categoryRepository Category repository
      *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     * @return Response HTTP response
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
@@ -164,11 +160,11 @@ class CategoryController extends AbstractController
     /**
      * Delete action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request            HTTP request
+     * @param Request $request            HTTP request
      * @param \App\Entity\Category                      $category           Category entity
-     * @param \App\Repository\CategoryRepository        $categoryRepository Category repository
+     * @param CategoryRepository $categoryRepository Category repository
      *
-     * @return \Symfony\Component\HttpFoundation\Response HTTP response
+     * @return Response HTTP response
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
@@ -183,7 +179,6 @@ class CategoryController extends AbstractController
     public function delete(Request $request, Category $category, CategoryRepository $categoryRepository): Response
     {
         if ($category->getQuestions()->count()) {
-
             return $this->redirectToRoute('category_index');
         }
 

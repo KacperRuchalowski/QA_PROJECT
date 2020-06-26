@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Question repository.
+ */
+
+
 namespace App\Repository;
 
 use App\Entity\User;
@@ -19,6 +24,10 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 {
     const PAGINATOR_ITEMS_PER_PAGE = 10;
 
+    /**
+     * UserRepository constructor.
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
@@ -27,7 +36,10 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      *
+     * @param UserInterface $user
+     * @param string $newEncodedPassword
      * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function upgradePassword(UserInterface $user, string $newEncodedPassword): void
     {
@@ -72,7 +84,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /**
      * Save record.
      *
-     * @param \App\Entity\User $user User entity
+     * @param User $user User entity
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException

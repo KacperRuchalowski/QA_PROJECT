@@ -27,6 +27,7 @@ class Answer
     /**
      * Name
      * @var string
+     *
      * @ORM\Column(
      *     type="string",
      *     length=64,
@@ -43,7 +44,7 @@ class Answer
     /**
      * @ORM\Column(type="integer")
      */
-    private $is_best;
+    public $is_best;
 
     /**
      * @ORM\ManyToOne(targetEntity=Question::class, inversedBy="answers")
@@ -54,6 +55,7 @@ class Answer
     /**
      * Name
      * @var string
+     *
      * @ORM\Column(
      *     type="string",
      *     length=64,
@@ -70,6 +72,7 @@ class Answer
     /**
      * Name
      * @var string
+     *
      * @ORM\Column(
      *     type="string",
      *     length=64,
@@ -83,17 +86,24 @@ class Answer
      */
     private $nick;
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getContent(): ?string
     {
         return $this->content;
     }
 
     /**
+     * @param string $content
      * @return $this
      */
     public function setContent(string $content): self
@@ -103,12 +113,16 @@ class Answer
         return $this;
     }
 
+    /**
+     * @return int|null
+     */
     public function getIsBest(): ?int
     {
         return $this->is_best;
     }
 
     /**
+     * @param int $is_best
      * @return $this
      */
     public function setIsBest(int $is_best): self
@@ -118,12 +132,16 @@ class Answer
         return $this;
     }
 
+    /**
+     * @return Question|null
+     */
     public function getQuestion(): ?Question
     {
         return $this->question;
     }
 
     /**
+     * @param Question|null $question
      * @return $this
      */
     public function setQuestion(?Question $question): self
@@ -133,12 +151,16 @@ class Answer
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
     /**
+     * @param string $email
      * @return $this
      */
     public function setEmail(string $email): self
@@ -148,12 +170,16 @@ class Answer
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getNick(): ?string
     {
         return $this->nick;
     }
 
     /**
+     * @param string $nick
      * @return $this
      */
     public function setNick(string $nick): self

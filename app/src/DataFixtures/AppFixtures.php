@@ -11,6 +11,10 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class AppFixtures extends Fixture
 {
+    /**
+     * AppFixture function
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
         // $product = new Product();

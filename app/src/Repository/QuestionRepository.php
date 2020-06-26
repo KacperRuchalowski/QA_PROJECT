@@ -42,6 +42,20 @@ class QuestionRepository extends ServiceEntityRepository
     }
 
     /**
+     * Delete record.
+     *
+     * @param \App\Entity\Question $question Question entity
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function delete(Question $question): void
+    {
+        $this->_em->remove($question);
+        $this->_em->flush($question);
+    }
+
+    /**
      * Query all records.
      *
      * @return \Doctrine\ORM\QueryBuilder Query builder
@@ -50,18 +64,6 @@ class QuestionRepository extends ServiceEntityRepository
     {
         return $this->getOrCreateQueryBuilder()
             ->orderBy('question.title_question', 'DESC');
-    }
-
-    /**
-     * Get or create new query builder.
-     *
-     * @param \Doctrine\ORM\QueryBuilder|null $queryBuilder Query builder
-     *
-     * @return \Doctrine\ORM\QueryBuilder Query builder
-     */
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('question');
     }
 
     /**
@@ -78,19 +80,16 @@ class QuestionRepository extends ServiceEntityRepository
         $this->_em->flush($question);
     }
 
-    // ...
-
     /**
-     * Delete record.
+     * Get or create new query builder.
      *
-     * @param \App\Entity\Question $question Question entity
+     * @param \Doctrine\ORM\QueryBuilder|null $queryBuilder Query builder
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @return \Doctrine\ORM\QueryBuilder Query builder
      */
-    public function delete(Question $question): void
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
-        $this->_em->remove($question);
-        $this->_em->flush($question);
+        return $queryBuilder ?? $this->createQueryBuilder('question');
     }
+
 }

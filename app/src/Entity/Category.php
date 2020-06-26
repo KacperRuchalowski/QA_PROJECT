@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Category entity.
+ */
+
+
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -7,6 +12,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  * @ORM\Table(name="categories")
@@ -25,6 +31,7 @@ class Category
     /**
      * Name
      * @var string
+     *
      * @ORM\Column(
      *     type="string",
      *     length=64,
@@ -43,21 +50,34 @@ class Category
      */
     private $questions;
 
+    /**
+     * Category constructor.
+     */
     public function __construct()
     {
         $this->questions = new ArrayCollection();
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * @param string $name
+     * @return $this
+     */
     public function setName(string $name): self
     {
         $this->name = $name;
@@ -73,26 +93,4 @@ class Category
         return $this->questions;
     }
 
-    public function addQuestion(Question $question): self
-    {
-        if (!$this->questions->contains($question)) {
-            $this->questions[] = $question;
-            $question->setCategory($this);
-        }
-
-        return $this;
-    }
-
-    public function removeQuestion(Question $question): self
-    {
-        if ($this->questions->contains($question)) {
-            $this->questions->removeElement($question);
-            // set the owning side to null (unless already changed)
-            if ($question->getCategory() === $this) {
-                $question->setCategory(null);
-            }
-        }
-
-        return $this;
-    }
 }

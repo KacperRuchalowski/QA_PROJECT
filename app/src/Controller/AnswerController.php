@@ -44,6 +44,7 @@ class AnswerController extends AbstractController
      * Index action.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
+     *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
      * @Route(
@@ -73,6 +74,8 @@ class AnswerController extends AbstractController
      *     name="answer_show",
      *     requirements={"id": "[1-9]\d*"},
      * )
+     * @param  Answer $answer
+     * @return Response
      */
     public function show(Answer $answer): Response
     {

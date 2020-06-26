@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Question entity.
+ */
+
 namespace App\Repository;
 
 use App\Entity\Answer;
@@ -16,6 +20,10 @@ class AnswerRepository extends ServiceEntityRepository
 {
     const PAGINATOR_ITEMS_PER_PAGE = 10;
 
+    /**
+     * AnswerRepository constructor.
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Answer::class);

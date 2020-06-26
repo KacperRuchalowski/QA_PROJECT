@@ -40,12 +40,11 @@ class UserController extends AbstractController
     {
         $this->userService = $userService;
     }
+
     /**
      * Index action.
      *
-     * @param Request            $request        HTTP request
-     * @param UserRepository     $userRepository UserRepository
-     *
+     * @param Request $request HTTP request
      * @return Response HTTP response
      *
      * @Route(
@@ -60,6 +59,7 @@ class UserController extends AbstractController
              $page = $request->query->getInt('page', 1);
              $pagination = $this->userService->createPaginatedList($page);
              $request->query->getInt('page', 1);
+
         return $this->render(
             'user/index.html.twig',
             ['pagination' => $pagination]
@@ -74,6 +74,8 @@ class UserController extends AbstractController
      *     name="user_show",
      *     requirements={"id": "[1-9]\d*"},
      * )
+     * @param User $user
+     * @return Response
      */
     public function show(User $user): Response
     {
