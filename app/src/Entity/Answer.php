@@ -25,20 +25,9 @@ class Answer
     private $id;
 
     /**
-     * Name
-     * @var string
-     *
-     * @ORM\Column(
-     *     type="string",
-     *     length=64,
-     *     )
-     *  @Assert\Type(type="string")
-     *  @Assert\NotBlank
-     *  @Assert\Length(
-     *     min="3",
-     *     max="64",
-     * )
+     * @ORM\Column(type="string")
      */
+
     protected $content;
 
     /**

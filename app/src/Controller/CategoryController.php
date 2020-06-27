@@ -62,7 +62,7 @@ class CategoryController extends AbstractController
         $pagination = $this->categoryService->createPaginatedList($page);
 
         return $this->render(
-            'category/index.html.twig',
+            'Category/index.html.twig',
             ['pagination' => $pagination]
         );
     }
@@ -160,7 +160,7 @@ class CategoryController extends AbstractController
         }
 
         return $this->render(
-            'category/edit.html.twig',
+            'Category/edit.html.twig',
             [
                 'form' => $form->createView(),
                 'category' => $category,
@@ -193,6 +193,7 @@ class CategoryController extends AbstractController
     {
         if ($category->getQuestions()->count()) {
             return $this->redirectToRoute('category_index');
+            $this->addFlash('error', 'message_category_contains_questions');
         }
 
         $form = $this->createForm(FormType::class, $category, ['method' => 'DELETE']);
@@ -210,7 +211,7 @@ class CategoryController extends AbstractController
         }
 
         return $this->render(
-            'category/delete.html.twig',
+            'Category/delete.html.twig',
             [
                 'form' => $form->createView(),
                 'category' => $category,

@@ -48,7 +48,7 @@ class UserController extends AbstractController
      * @param Request $request HTTP request
      *
      * @return Response HTTP response
-     *
+     * @IsGranted("ROLE_ADMIN")
      * @Route(
      *     "/",
      *     methods={"GET"},
@@ -63,7 +63,7 @@ class UserController extends AbstractController
              $request->query->getInt('page', 1);
 
         return $this->render(
-            'user/index.html.twig',
+            'User/index.html.twig',
             ['pagination' => $pagination]
         );
     }
@@ -99,7 +99,7 @@ class UserController extends AbstractController
      * @IsGranted("ROLE_ADMIN")
      *
      * @return Response HTTP response
-     *
+     * @IsGranted("ROLE_ADMIN")
      * @throws ORMException
      * @throws OptimisticLockException
      *
@@ -125,7 +125,7 @@ class UserController extends AbstractController
         }
 
         return $this->render(
-            'user/edit.html.twig',
+            'User/edit.html.twig',
             [
                 'form' => $form->createView(),
                 'user' => $user,

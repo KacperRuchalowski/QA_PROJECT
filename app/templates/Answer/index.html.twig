@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'label_answer_list'|trans }}
+{% endblock %}
+
+
+{% block body %}
+    <h1>{{ 'label_answer_list'|trans }}</h1>
+    {% if question is defined and question|length %}
+        <div >
+            {% for answers in question.answers %}
+                <div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ answer.question.titleQuestion }}</h5>
+                        <h5 class="card-title">{{ answer.content }}</h5>
+
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+
+    {% else %}
+        <p>
+            {{ 'message_empty_list'|trans }}
+        </p>
+
+    {% endif %}
+{% endblock %}

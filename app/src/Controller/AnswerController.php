@@ -59,7 +59,7 @@ class AnswerController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        $page = $request->query->getInt('page');
+        $page = $request->query->getInt('page', 1);
         $pagination = $this->answerService->createPaginatedList($page);
         $request->query->getInt('page', 1);
 
@@ -121,7 +121,7 @@ class AnswerController extends AbstractController
         }
 
         return $this->render(
-            'answer/create.html.twig',
+            'Answer/create.html.twig',
             ['form' => $form->createView()]
         );
     }
@@ -161,7 +161,7 @@ class AnswerController extends AbstractController
         }
 
         return $this->render(
-            'answer/edit.html.twig',
+            'Answer/edit.html.twig',
             [
                 'form' => $form->createView(),
                 'answer' => $answer,
@@ -207,7 +207,7 @@ class AnswerController extends AbstractController
         }
 
         return $this->render(
-            'answer/delete.html.twig',
+            'Answer/delete.html.twig',
             [
                 'form' => $form->createView(),
                 'answer' => $answer,
@@ -248,7 +248,7 @@ class AnswerController extends AbstractController
         }
 
         return $this->render(
-            'answer/best.html.twig',
+            'Answer/best.html.twig',
             [
                 'form' => $form->createView(),
                 'answer' => $answer,

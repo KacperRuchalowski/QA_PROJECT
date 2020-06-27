@@ -12,7 +12,7 @@
     <h1 class="display-4 d-flex justify-content-center">{{ 'title_category_list'|trans }}</h1>
 
     {% if is_granted ('ROLE_ADMIN') %}
-    <a class="btn btn-outline-success" href="{{ url('category_create') }}" title="{{ 'label_create_category '|trans }}">
+    <a class="btn btn-outline-success" href="{{ url('category_create') }}" title="{{ 'label_create_category'|trans }}">
         {{ 'label_create_category'|trans }}
     </a>
     {% endif %}
