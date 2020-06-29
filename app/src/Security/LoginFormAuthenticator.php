@@ -7,6 +7,7 @@ namespace App\Security;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use Exception;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -32,39 +33,31 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
 
     /**
      * User repository.
-     *
-     * @var \App\Repository\UserRepository
      */
-    private $userRepository;
+    private UserRepository $userRepository;
 
     /**
      * URL generator.
-     *
-     * @var \Symfony\Component\Routing\Generator\UrlGeneratorInterface
      */
-    private $urlGenerator;
+    private UrlGeneratorInterface $urlGenerator;
 
     /**
      * CSRF token manager.
-     *
-     * @var \Symfony\Component\Security\Csrf\CsrfTokenManagerInterface
      */
-    private $csrfTokenManager;
+    private CsrfTokenManagerInterface $csrfTokenManager;
 
     /**
      * Password encoder.
-     *
-     * @var \Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface
      */
-    private $passwordEncoder;
+    private UserPasswordEncoderInterface $passwordEncoder;
 
     /**
      * LoginFormAuthenticator constructor.
      *
-     * @param \App\Repository\UserRepository                                        $userRepository   User repository
-     * @param \Symfony\Component\Routing\Generator\UrlGeneratorInterface            $urlGenerator     URL generator
-     * @param \Symfony\Component\Security\Csrf\CsrfTokenManagerInterface            $csrfTokenManager CSRF token manager
-     * @param \Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface $passwordEncoder  Password encoder
+     * @param UserRepository               $userRepository   User repository
+     * @param UrlGeneratorInterface        $urlGenerator     URL generator
+     * @param CsrfTokenManagerInterface    $csrfTokenManager CSRF token manager
+     * @param UserPasswordEncoderInterface $passwordEncoder  Password encoder
      */
     public function __construct(UserRepository $userRepository, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -116,10 +109,10 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
     /**
      * Get user.
      *
-     * @param mixed                                                       $credentials  Credentials
-     * @param \Symfony\Component\Security\Core\User\UserProviderInterface $userProvider User provider
+     * @param mixed                 $credentials  Credentials
+     * @param UserProviderInterface $userProvider User provider
      *
-     * @return \App\Entity\User|null Result
+     * @return User|null Result
      */
     public function getUser($credentials, UserProviderInterface $userProvider): ?User
     {
@@ -141,8 +134,8 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
     /**
      * Checks credentials.
      *
-     * @param mixed                                               $credentials Credentials
-     * @param \Symfony\Component\Security\Core\User\UserInterface $user        User
+     * @param mixed         $credentials Credentials
+     * @param UserInterface $user        User
      *
      * @return bool Result
      */
@@ -166,13 +159,13 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
     /**
      * Called when authentication executed and was successful!
      *
-     * @param \Symfony\Component\HttpFoundation\Request                            $request     HTTP request
-     * @param \Symfony\Component\Security\Core\Authentication\Token\TokenInterface $token       Authentication token
-     * @param string                                                               $providerKey The key of the firewall
+     * @param Request        $request     HTTP request
+     * @param TokenInterface $token       Authentication token
+     * @param string         $providerKey The key of the firewall
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse Redirect response
+     * @return RedirectResponse Redirect response
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey): RedirectResponse
     {

@@ -66,7 +66,7 @@ class QuestionController extends AbstractController
         $pagination = $this->questionService->createPaginatedList($page);
 
         return $this->render(
-            'question/index.html.twig',
+            'Question/index.html.twig',
             ['pagination' => $pagination]
         );
     }
@@ -103,7 +103,7 @@ class QuestionController extends AbstractController
         }
 
         return $this->render(
-            'question/show.html.twig',
+            'Question/show.html.twig',
             ['question' => $question, 'form' => $form->createView()]
         );
     }
@@ -143,7 +143,7 @@ class QuestionController extends AbstractController
         }
 
         return $this->render(
-            'question/create.html.twig',
+            'Question/create.html.twig',
             ['form' => $form->createView()]
         );
     }
@@ -183,7 +183,7 @@ class QuestionController extends AbstractController
         }
 
         return $this->render(
-            'question/edit.html.twig',
+            'Question/edit.html.twig',
             [
                 'form' => $form->createView(),
                 'question' => $question,
@@ -235,7 +235,7 @@ class QuestionController extends AbstractController
         }
 
         return $this->render(
-            'question/delete.html.twig',
+            'Question/delete.html.twig',
             [
                 'form' => $form->createView(),
                 'question' => $question,

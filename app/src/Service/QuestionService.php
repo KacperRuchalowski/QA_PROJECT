@@ -7,6 +7,8 @@ namespace App\Service;
 
 use App\Entity\Question;
 use App\Repository\QuestionRepository;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -18,22 +20,22 @@ class QuestionService
     /**
      * Question repository.
      *
-     * @var \App\Repository\QuestionRepository
+     * @var QuestionRepository
      */
-    private $questionRepository;
+    private QuestionRepository $questionRepository;
 
     /**
      * Paginator.
      *
-     * @var \Knp\Component\Pager\PaginatorInterface
+     * @var PaginatorInterface
      */
-    private $paginator;
+    private PaginatorInterface $paginator;
 
     /**
      * QuestionService constructor.
      *
-     * @param \App\Repository\QuestionRepository      $questionRepository Question repository
-     * @param \Knp\Component\Pager\PaginatorInterface $paginator          Paginator
+     * @param QuestionRepository $questionRepository Question repository
+     * @param PaginatorInterface $paginator          Paginator
      */
     public function __construct(QuestionRepository $questionRepository, PaginatorInterface $paginator)
     {
@@ -60,10 +62,10 @@ class QuestionService
     /**
      * Save question.
      *
-     * @param \App\Entity\Question $question Question entity
+     * @param Question $question Question entity
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
     public function save(Question $question): void
     {
@@ -73,10 +75,10 @@ class QuestionService
     /**
      * Delete question.
      *
-     * @param \App\Entity\Question $question Question entity
+     * @param Question $question Question entity
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
     public function delete(Question $question): void
     {

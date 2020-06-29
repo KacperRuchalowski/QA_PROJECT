@@ -8,6 +8,8 @@ namespace App\Repository;
 
 use App\Entity\Answer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -63,10 +65,10 @@ class AnswerRepository extends ServiceEntityRepository
     /**
      * Save record.
      *
-     * @param \App\Entity\Answer $answer Answer entity
+     * @param Answer $answer Answer entity
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
     public function save(Answer $answer): void
     {
@@ -77,10 +79,10 @@ class AnswerRepository extends ServiceEntityRepository
     /**
      * Delete record.
      *
-     * @param \App\Entity\Answer $answer Answer entity
+     * @param Answer $answer Answer entity
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
     public function delete(Answer $answer): void
     {

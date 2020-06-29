@@ -48,7 +48,9 @@ class UserController extends AbstractController
      * @param Request $request HTTP request
      *
      * @return Response HTTP response
+     *
      * @IsGranted("ROLE_ADMIN")
+     *
      * @Route(
      *     "/",
      *     methods={"GET"},
@@ -58,9 +60,11 @@ class UserController extends AbstractController
      */
     public function index(Request $request): Response
     {
-             $page = $request->query->getInt('page', 1);
-             $pagination = $this->userService->createPaginatedList($page);
-             $request->query->getInt('page', 1);
+        $page = $request->query->getInt('page', 1);
+
+        $pagination = $this->userService->createPaginatedList($page);
+
+        $request->query->getInt('page', 1);
 
         return $this->render(
             'User/index.html.twig',
@@ -77,7 +81,6 @@ class UserController extends AbstractController
      *     requirements={"id": "[1-9]\d*"},
      * )
      * @param User $user
-     *
      * @return Response
      */
     public function show(User $user): Response
@@ -99,7 +102,7 @@ class UserController extends AbstractController
      * @IsGranted("ROLE_ADMIN")
      *
      * @return Response HTTP response
-     * @IsGranted("ROLE_ADMIN")
+     *
      * @throws ORMException
      * @throws OptimisticLockException
      *

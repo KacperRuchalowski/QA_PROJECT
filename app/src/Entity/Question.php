@@ -15,6 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\QuestionRepository")
+ *
  * @ORM\Table(name="questions")
  */
 class Question

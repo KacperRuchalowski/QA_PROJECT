@@ -7,19 +7,20 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Constraints\Email;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AnswerRepository")
+ *
  * @ORM\Table(name="answers")
  */
 class Answer
 {
     /**
      * @ORM\Id()
+     *
      * @ORM\GeneratedValue()
+     *
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -27,22 +28,23 @@ class Answer
     /**
      * @ORM\Column(type="string")
      */
-
     protected $content;
 
     /**
      * @ORM\Column(type="integer")
      */
-    public $is_best;
+    public $isBest;
 
     /**
      * @ORM\ManyToOne(targetEntity=Question::class, inversedBy="answers")
+     *
      * @ORM\JoinColumn(nullable=false)
      */
     private $question;
 
     /**
-     * Name
+     * Name.
+     *
      * @var string
      *
      * @ORM\Column(
@@ -59,7 +61,8 @@ class Answer
     private $email;
 
     /**
-     * Name
+     * Name.
+     *
      * @var string
      *
      * @ORM\Column(
@@ -92,8 +95,7 @@ class Answer
     }
 
     /**
-     * @param string $content
-     *
+     * @param  string $content
      * @return $this
      */
     public function setContent(string $content): self
@@ -108,17 +110,16 @@ class Answer
      */
     public function getIsBest(): ?int
     {
-        return $this->is_best;
+        return $this->isBest;
     }
 
     /**
-     * @param int $is_best
-     *
+     * @param  int     $isBest
      * @return $this
      */
-    public function setIsBest(int $is_best): self
+    public function setIsBest(int $isBest): self
     {
-        $this->is_best = $is_best;
+        $this->isBest = $isBest;
 
         return $this;
     }
@@ -133,7 +134,6 @@ class Answer
 
     /**
      * @param Question|null $question
-     *
      * @return $this
      */
     public function setQuestion(?Question $question): self
@@ -153,7 +153,6 @@ class Answer
 
     /**
      * @param string $email
-     *
      * @return $this
      */
     public function setEmail(string $email): self
@@ -173,7 +172,6 @@ class Answer
 
     /**
      * @param string $nick
-     *
      * @return $this
      */
     public function setNick(string $nick): self

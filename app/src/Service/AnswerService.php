@@ -7,6 +7,8 @@ namespace App\Service;
 
 use App\Entity\Answer;
 use App\Repository\AnswerRepository;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -18,22 +20,22 @@ class AnswerService
     /**
      * Answer repository.
      *
-     * @var \App\Repository\AnswerRepository
+     * @var AnswerRepository
      */
-    private $answerRepository;
+    private AnswerRepository $answerRepository;
 
     /**
      * Paginator.
      *
-     * @var \Knp\Component\Pager\PaginatorInterface
+     * @var PaginatorInterface
      */
-    private $paginator;
+    private PaginatorInterface $paginator;
 
     /**
      * AnswerService constructor.
      *
-     * @param \App\Repository\AnswerRepository        $answerRepository Answer repository
-     * @param \Knp\Component\Pager\PaginatorInterface $paginator        Paginator
+     * @param AnswerRepository   $answerRepository Answer repository
+     * @param PaginatorInterface $paginator        Paginator
      */
     public function __construct(AnswerRepository $answerRepository, PaginatorInterface $paginator)
     {
@@ -46,7 +48,7 @@ class AnswerService
      *
      * @param int $page Page number
      *
-     * @return \Knp\Component\Pager\Pagination\PaginationInterface Paginated list
+     * @return PaginationInterface Paginated list
      */
     public function createPaginatedList(int $page): PaginationInterface
     {
@@ -60,10 +62,10 @@ class AnswerService
     /**
      * Save answer.
      *
-     * @param \App\Entity\Answer $answer Answer entity
+     * @param Answer $answer Answer entity
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
     public function save(Answer $answer): void
     {
@@ -73,10 +75,10 @@ class AnswerService
     /**
      * Delete answer.
      *
-     * @param \App\Entity\Answer $answer Answer entity
+     * @param Answer $answer Answer entity
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
     public function delete(Answer $answer): void
     {

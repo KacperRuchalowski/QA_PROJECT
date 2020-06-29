@@ -60,10 +60,6 @@ class AnswerType extends AbstractType
                 'attr' => ['max_length' => 255],
             ]
         );
-
-        $builder->add('is_best', HiddenType::class, [
-            'data' => '0',
-        ]);
     }
 
     /**

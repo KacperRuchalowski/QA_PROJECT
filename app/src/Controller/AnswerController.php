@@ -31,7 +31,7 @@ class AnswerController extends AbstractController
      *
      * @var AnswerService
      */
-    private $answerService;
+    private AnswerService $answerService;
 
     /**
      * AnswerService constructor.
@@ -78,7 +78,6 @@ class AnswerController extends AbstractController
      *     requirements={"id": "[1-9]\d*"},
      * )
      * @param  Answer $answer
-     *
      * @return Response
      */
     public function show(Answer $answer): Response
@@ -109,12 +108,12 @@ class AnswerController extends AbstractController
     public function create(Request $request, AnswerRepository $answerRepository): Response
     {
         $answer = new Answer();
+        $answer->setIsBest(0);
         $form = $this->createForm(AnswerType::class, $answer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $answerRepository->save($answer);
-
             $this->addFlash('success', 'answer_created_successfully');
 
             return $this->redirectToRoute('answer_index');

@@ -30,7 +30,7 @@
         "version": "2.13.0"
     },
     "doctrine/data-fixtures": {
-        "version": "1.4.2"
+        "version": "1.4.3"
     },
     "doctrine/dbal": {
         "version": "2.10.2"
@@ -59,7 +59,7 @@
             "ref": "fc52d86631a6dfd9fdf3381d0b7e3df2069e51b3"
         },
         "files": [
-            "./src/DataFixtures/AppFixtures.php"
+            "src/DataFixtures/AppFixtures.php"
         ]
     },
     "doctrine/doctrine-migrations-bundle": {
@@ -231,7 +231,7 @@
             "ref": "6c1ceb662f8997085f739cd089bfbef67f245983"
         },
         "files": [
-            "./config/packages/stof_doctrine_extensions.yaml"
+            "config/packages/stof_doctrine_extensions.yaml"
         ]
     },
     "symfony/asset": {
@@ -409,9 +409,6 @@
     },
     "symfony/options-resolver": {
         "version": "v4.4.8"
-    },
-    "symfony/orm-pack": {
-        "version": "v1.0.8"
     },
     "symfony/phpunit-bridge": {
         "version": "4.3",
@@ -596,6 +593,9 @@
         "version": "v4.4.8"
     },
     "twig/extra-bundle": {
+        "version": "v3.0.3"
+    },
+    "twig/intl-extra": {
         "version": "v3.0.3"
     },
     "twig/twig": {

@@ -10,7 +10,6 @@
     {% if question is defined and question|length %}
         <div class="card distance" style="width: 50%;">
         <dl class="dl-horizontal">
-            <dd class="card-title">{{ question.TitleQuestion|trans }}</dd>
             <dd class="card-text display-4">{{ question.Content }}</dd>
         </dl>
         </div>
@@ -56,9 +55,11 @@
                                 {{ 'label_answer_delete'|trans }}
                             </a>
 
+
                             <a class="btn btn-success" href="{{ url('answer_best', {id: answers.id}) }}" title="{{ 'label_answer_isBest'|trans }}">
                                 {{ 'label_answer_isBest'|trans }}
                             </a>
+
 
 
                         </div>
