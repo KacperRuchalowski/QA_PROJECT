@@ -36,7 +36,7 @@
             <tbody>
             {% for question in pagination.items %}
                 <tr>
-                    <td>{{ question.createdAt|date('Y/m/d') }}</td>
+                    <td>{{ question.createdAt|date }}</td>
                     <td>{{ question.TitleQuestion }}</td>
                     <td>{{ question.Content }}</td>
                     <td>{{ question.category.name }}</td>

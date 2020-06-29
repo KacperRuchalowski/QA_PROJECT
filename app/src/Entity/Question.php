@@ -10,7 +10,6 @@ use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -28,7 +27,8 @@ class Question
     private $id;
 
     /**
-     * Name
+     * Name.
+     *
      * @var string
      *
      * @ORM\Column(
@@ -42,10 +42,11 @@ class Question
      *     max="45",
      * )
      */
-    private $title_question;
+    private $titleQuestion;
 
     /**
-     * Name
+     * Name.
+     *
      * @var string
      *
      * @ORM\Column(
@@ -69,7 +70,6 @@ class Question
 
     /**
      * @ORM\OneToMany(targetEntity=Answer::class, mappedBy="question")
-     *
      */
     private $answers;
 
@@ -105,20 +105,17 @@ class Question
      */
     public function getTitleQuestion(): ?string
     {
-        return $this->title_question;
+        return $this->titleQuestion;
     }
 
     /**
-     * @param string $title_question
+     * @param string $titleQuestion
      */
-    public function setTitleQuestion(string $title_question): void
+    public function setTitleQuestion(string $titleQuestion): void
     {
-        $this->title_question = $title_question;
+        $this->titleQuestion = $titleQuestion;
     }
 
-    /**
-     * @return string|null
-     */
     public function getContent(): ?string
     {
         return $this->content;
@@ -142,7 +139,6 @@ class Question
 
     /**
      * @param Category|null $category
-     *
      * @return $this
      */
     public function setCategory(?Category $category): self
@@ -162,7 +158,6 @@ class Question
 
     /**
      * @param Answer $answer
-     *
      * @return $this
      */
     public function addAnswer(Answer $answer): self
@@ -177,7 +172,6 @@ class Question
 
     /**
      * @param Answer $answer
-     *
      * @return $this
      */
     public function removeAnswer(Answer $answer): self
@@ -194,19 +188,18 @@ class Question
     }
 
     /**
-     * @return \DateTimeInterface|null
+     * @return DateTimeInterface|null
      */
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?DateTimeInterface
     {
         return $this->createdAt;
     }
 
     /**
-     * @param \DateTimeInterface $createdAt
-     *
+     * @param DateTimeInterface $createdAt
      * @return $this
      */
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreatedAt(DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
