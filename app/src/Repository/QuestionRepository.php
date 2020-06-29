@@ -8,6 +8,8 @@ namespace App\Repository;
 use App\Entity\Question;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Doctrine\ORM\QueryBuilder;
 
 /**
@@ -44,10 +46,10 @@ class QuestionRepository extends ServiceEntityRepository
     /**
      * Delete record.
      *
-     * @param \App\Entity\Question $question Question entity
+     * @param Question $question Question entity
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
     public function delete(Question $question): void
     {
@@ -58,21 +60,24 @@ class QuestionRepository extends ServiceEntityRepository
     /**
      * Query all records.
      *
-     * @return \Doctrine\ORM\QueryBuilder Query builder
+     * @return QueryBuilder Query builder
      */
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->orderBy('question.title_question', 'DESC');
+            ->select('question', 'category', 'answers')
+            ->join('question.category', 'category')
+            ->leftJoin('question.answers', 'answers')
+            ->orderBy('question.createdAt', 'DESC');
     }
 
     /**
      * Save record.
      *
-     * @param \App\Entity\Question $question Question entity
+     * @param Question $question Question entity
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
     public function save(Question $question): void
     {
@@ -83,9 +88,9 @@ class QuestionRepository extends ServiceEntityRepository
     /**
      * Get or create new query builder.
      *
-     * @param \Doctrine\ORM\QueryBuilder|null $queryBuilder Query builder
+     * @param QueryBuilder|null $queryBuilder Query builder
      *
-     * @return \Doctrine\ORM\QueryBuilder Query builder
+     * @return QueryBuilder Query builder
      */
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {

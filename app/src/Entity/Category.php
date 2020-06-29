@@ -32,6 +32,8 @@ class Category
      * Name
      * @var string
      *
+     * fetch="EXTRA_LAZY",
+     *
      * @ORM\Column(
      *     type="string",
      *     length=64,

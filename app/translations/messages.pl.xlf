@@ -361,6 +361,11 @@
                 <target> Dane użytkownika zostały zaktualizowane </target>
             </trans-unit>
 
+            <trans-unit id="Email could not be found">
+                <source>Email could not be found</source>
+                <target> Nie znaleziono podanego maila </target>
+            </trans-unit>
+
 
 
         </body>

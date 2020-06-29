@@ -8,14 +8,21 @@ namespace App\Repository;
 
 use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method Category|null find($id, $lockMode = null, $lockVersion = null)
  * @method Category|null findOneBy(array $criteria, array $orderBy = null)
- * @method Category[]    findAll()
  * @method Category[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
+
+
+
+
+
 class CategoryRepository extends ServiceEntityRepository
 {
     const PAGINATOR_ITEMS_PER_PAGE = 10;
@@ -63,10 +70,10 @@ class CategoryRepository extends ServiceEntityRepository
     /**
      * Save record.
      *
-     * @param \App\Entity\Category $category Category entity
+     * @param Category $category Category entity
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
     public function save(Category $category): void
     {
@@ -77,14 +84,35 @@ class CategoryRepository extends ServiceEntityRepository
     /**
      * Delete record.
      *
-     * @param \App\Entity\Category $category Category entity
+     * @param Category $category Category entity
      *
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
     public function delete(Category $category): void
     {
         $this->_em->remove($category);
         $this->_em->flush($category);
+    }
+
+    /**
+     * Query all records.
+     *
+     * @return QueryBuilder Query builder
+     */
+    public function queryAll(): QueryBuilder
+    {
+        return $this->getOrCreateQueryBuilder()
+            ->select('category', 'partial questions.{id}')
+            ->join('category.questions', 'questions');
+    }
+
+    /**
+     * @param QueryBuilder|null $queryBuilder
+     * @return QueryBuilder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('category');
     }
 }

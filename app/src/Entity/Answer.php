@@ -33,7 +33,7 @@ class Answer
     /**
      * @ORM\Column(type="integer")
      */
-    public $isBest;
+    public $isBest = 0;
 
     /**
      * @ORM\ManyToOne(targetEntity=Question::class, inversedBy="answers")

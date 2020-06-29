@@ -9,6 +9,7 @@ use App\Entity\Category;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\ORM\QueryBuilder;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -53,7 +54,7 @@ class CategoryService
     public function createPaginatedList(int $page): PaginationInterface
     {
         return $this->paginator->paginate(
-            $this->categoryRepository->findAll(),
+            $this->categoryRepository->queryAll(),
             $page,
             CategoryRepository::PAGINATOR_ITEMS_PER_PAGE
         );
