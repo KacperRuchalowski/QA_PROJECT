@@ -17,6 +17,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use function get_class;
 
 /**
+ * User Repository.
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
  * @method User|null findOneBy(array $criteria, array $orderBy = null)
  * @method User[]    findAll()
