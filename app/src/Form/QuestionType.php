@@ -60,7 +60,6 @@ class QuestionType extends AbstractType
                     return $category->getName();
                 },
                 'label' => 'label_category',
-                'placeholder' => 'Category',
                 'required' => true,
             ]
         );

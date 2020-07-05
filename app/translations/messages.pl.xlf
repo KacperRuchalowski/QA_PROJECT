@@ -366,7 +366,15 @@
                 <target> Nie znaleziono podanego maila </target>
             </trans-unit>
 
+            <trans-unit id="question.deleted_successfully	">
+                <source>question.deleted_successfully</source>
+                <target> Nie znaleziono podanego maila </target>
+            </trans-unit>
 
+            <trans-unit id="category_updated_successfully">
+                <source>category_updated_successfully</source>
+                <target> Kategoria zaktualizowana </target>
+            </trans-unit>
 
         </body>
     </file>

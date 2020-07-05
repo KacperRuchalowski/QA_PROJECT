@@ -36,7 +36,7 @@ class QuestionRepository extends ServiceEntityRepository
     /**
      * QuestionRepository constructor.
      *
-     * @param \Doctrine\Common\Persistence\ManagerRegistry $registry Manager registry
+     * @param ManagerRegistry $registry Manager registry
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -70,6 +70,7 @@ class QuestionRepository extends ServiceEntityRepository
             ->leftJoin('question.answers', 'answers')
             ->orderBy('question.createdAt', 'DESC');
     }
+
 
     /**
      * Save record.

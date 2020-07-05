@@ -352,6 +352,12 @@
                 <target> Category has been deleted </target>
             </trans-unit>
 
+            <trans-unit id="category_updated_successfully">
+                <source>category_updated_successfully</source>
+                <target> Category has been updated </target>
+            </trans-unit>
+
+
             <trans-unit id="category_created_successfully">
                 <source>category_created_successfully</source>
                 <target> Category has been created </target>

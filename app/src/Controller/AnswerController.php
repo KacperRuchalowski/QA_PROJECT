@@ -63,6 +63,9 @@ class AnswerController extends AbstractController
         $pagination = $this->answerService->createPaginatedList($page);
         $request->query->getInt('page', 1);
 
+
+
+
         return $this->render(
             'Answer/index.html.twig',
             ['pagination' => $pagination]
@@ -77,7 +80,7 @@ class AnswerController extends AbstractController
      *     name="answer_show",
      *     requirements={"id": "[1-9]\d*"},
      * )
-     * @param  Answer $answer
+     * @param  Answer   $answer
      * @return Response
      */
     public function show(Answer $answer): Response
