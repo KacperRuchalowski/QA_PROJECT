@@ -19,15 +19,11 @@ class QuestionService
 {
     /**
      * Question repository.
-     *
-     * @var QuestionRepository
      */
     private QuestionRepository $questionRepository;
 
     /**
      * Paginator.
-     *
-     * @var PaginatorInterface
      */
     private PaginatorInterface $paginator;
 

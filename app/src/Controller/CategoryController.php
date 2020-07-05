@@ -73,7 +73,8 @@ class CategoryController extends AbstractController
      *     name="category_show",
      *     requirements={"id": "[1-9]\d*"},
      * )
-     * @param Category $category
+     * @param  Category $category
+     *
      * @return Response
      */
     public function show(Category $category): Response
@@ -190,7 +191,6 @@ class CategoryController extends AbstractController
     {
         if ($category->getQuestions()->count()) {
             return $this->redirectToRoute('category_index');
-            $this->addFlash('error', 'message_category_contains_questions');
         }
 
         $form = $this->createForm(FormType::class, $category, ['method' => 'DELETE']);

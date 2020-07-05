@@ -71,7 +71,6 @@ class QuestionRepository extends ServiceEntityRepository
             ->orderBy('question.createdAt', 'DESC');
     }
 
-
     /**
      * Save record.
      *

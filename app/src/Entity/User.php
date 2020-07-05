@@ -57,7 +57,8 @@ class User implements UserInterface
     private $id;
 
     /**
-     * Name
+     * Name.
+     *
      * @var string
      *
      * @ORM\Column(
@@ -81,7 +82,8 @@ class User implements UserInterface
     private $roles = [];
 
     /**
-     * The hashed password
+     * The hashed password.
+     *
      * @var string
      *
      * @ORM\Column(

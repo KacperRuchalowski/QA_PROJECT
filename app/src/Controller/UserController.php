@@ -27,8 +27,6 @@ class UserController extends AbstractController
 {
     /**
      * User service.
-     *
-     * @var UserService
      */
     private UserService $userService;
 
@@ -81,6 +79,7 @@ class UserController extends AbstractController
      *     requirements={"id": "[1-9]\d*"},
      * )
      * @param User $user
+     *
      * @return Response
      */
     public function show(User $user): Response

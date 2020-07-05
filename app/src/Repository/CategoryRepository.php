@@ -3,7 +3,6 @@
  * Question entity.
  */
 
-
 namespace App\Repository;
 
 use App\Entity\Category;
@@ -18,11 +17,6 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Category|null findOneBy(array $criteria, array $orderBy = null)
  * @method Category[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-
-
-
-
-
 class CategoryRepository extends ServiceEntityRepository
 {
     const PAGINATOR_ITEMS_PER_PAGE = 10;
@@ -109,6 +103,7 @@ class CategoryRepository extends ServiceEntityRepository
 
     /**
      * @param QueryBuilder|null $queryBuilder
+     *
      * @return QueryBuilder
      */
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder

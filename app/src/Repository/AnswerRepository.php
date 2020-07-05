@@ -60,7 +60,6 @@ class AnswerRepository extends ServiceEntityRepository
     }
     */
 
-
     /**
      * Save record.
      *

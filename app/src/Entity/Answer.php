@@ -96,6 +96,7 @@ class Answer
 
     /**
      * @param string $content
+     *
      * @return $this
      */
     public function setContent(string $content): self
@@ -115,6 +116,7 @@ class Answer
 
     /**
      * @param int $isBest
+     *
      * @return $this
      */
     public function setIsBest(int $isBest): self
@@ -134,6 +136,7 @@ class Answer
 
     /**
      * @param Question|null $question
+     *
      * @return $this
      */
     public function setQuestion(?Question $question): self
@@ -152,7 +155,8 @@ class Answer
     }
 
     /**
-     * @param string $email
+     * @param  string $email
+     *
      * @return $this
      */
     public function setEmail(string $email): self
@@ -171,7 +175,8 @@ class Answer
     }
 
     /**
-     * @param string $nick
+     * @param  string $nick
+     *
      * @return $this
      */
     public function setNick(string $nick): self

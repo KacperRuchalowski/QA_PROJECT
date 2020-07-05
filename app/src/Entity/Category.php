@@ -50,7 +50,7 @@ class Category
     /**
      * @ORM\OneToMany(targetEntity=Question::class, mappedBy="category")
      */
-    private $questions;
+    private ArrayCollection $questions;
 
     /**
      * Category constructor.
@@ -78,6 +78,7 @@ class Category
 
     /**
      * @param string $name
+     *
      * @return $this
      */
     public function setName(string $name): self

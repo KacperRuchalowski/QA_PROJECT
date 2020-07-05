@@ -19,15 +19,11 @@ class CategoryService
 {
     /**
      * Category repository.
-     *
-     * @var CategoryRepository
      */
     private CategoryRepository $categoryRepository;
 
     /**
      * Paginator.
-     *
-     * @var PaginatorInterface
      */
     private PaginatorInterface $paginator;
 

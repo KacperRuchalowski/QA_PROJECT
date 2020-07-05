@@ -31,8 +31,6 @@ class QuestionController extends AbstractController
 {
     /**
      * Question service.
-     *
-     * @var QuestionService
      */
     private QuestionService $questionService;
 
