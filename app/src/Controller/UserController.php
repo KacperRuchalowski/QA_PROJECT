@@ -28,14 +28,14 @@ class UserController extends AbstractController
     /**
      * User service.
      *
-     * @var \App\Service\UserService
+     * @var UserService
      */
-    private $userService;
+    private UserService $userService;
 
     /**
      * UserController constructor.
      *
-     * @param \App\Service\QuestionService $userService User service
+     * @param UserService $userService User service
      */
     public function __construct(UserService $userService)
     {

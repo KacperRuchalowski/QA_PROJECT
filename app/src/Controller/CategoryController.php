@@ -25,12 +25,10 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class CategoryController extends AbstractController
 {
-/**
-* Category service.
-*
-* @var CategoryService
- */
-    private $categoryService;
+    /**
+     * Category service.
+     */
+    private CategoryService $categoryService;
 
     /**
      * CategoryController constructor.
@@ -76,7 +74,6 @@ class CategoryController extends AbstractController
      *     requirements={"id": "[1-9]\d*"},
      * )
      * @param Category $category
-     *
      * @return Response
      */
     public function show(Category $category): Response

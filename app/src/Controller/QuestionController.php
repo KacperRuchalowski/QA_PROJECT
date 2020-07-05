@@ -32,14 +32,14 @@ class QuestionController extends AbstractController
     /**
      * Question service.
      *
-     * @var \App\Service\QuestionService
+     * @var QuestionService
      */
-    private $questionService;
+    private QuestionService $questionService;
 
     /**
      * QuestionController constructor.
      *
-     * @param \App\Service\QuestionService $questionService Question service
+     * @param QuestionService $questionService Question service
      */
     public function __construct(QuestionService $questionService)
     {

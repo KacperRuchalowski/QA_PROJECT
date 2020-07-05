@@ -116,6 +116,9 @@ class Question
         $this->titleQuestion = $titleQuestion;
     }
 
+    /**
+     * @return string|null
+     */
     public function getContent(): ?string
     {
         return $this->content;

@@ -19,7 +19,7 @@ class UserFixtures extends AbstractBaseFixtures
      *
      * @var UserPasswordEncoderInterface
      */
-    private $passwordEncoder;
+    private UserPasswordEncoderInterface $passwordEncoder;
 
     /**
      * UserFixtures constructor.

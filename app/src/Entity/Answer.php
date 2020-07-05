@@ -95,7 +95,7 @@ class Answer
     }
 
     /**
-     * @param  string $content
+     * @param string $content
      * @return $this
      */
     public function setContent(string $content): self
@@ -114,7 +114,7 @@ class Answer
     }
 
     /**
-     * @param  int     $isBest
+     * @param int $isBest
      * @return $this
      */
     public function setIsBest(int $isBest): self

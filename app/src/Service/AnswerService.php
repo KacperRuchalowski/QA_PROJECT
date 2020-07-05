@@ -7,13 +7,10 @@ namespace App\Service;
 
 use App\Entity\Answer;
 use App\Repository\AnswerRepository;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use phpDocumentor\Reflection\Types\Boolean;
 
 /**
  * Class AnswerService.
@@ -83,5 +80,4 @@ class AnswerService
     {
         $this->answerRepository->delete($answer);
     }
-
 }
